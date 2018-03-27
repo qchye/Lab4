@@ -3,7 +3,7 @@ const userlist = [database.user1 , database.user2];
 
 module.exports.fetchMainPage =
     function(req, res){
-        res.render("homepage.html",
+        res.render("homepage.ejs",
             {});
     };
 module.exports.fetchBye =
