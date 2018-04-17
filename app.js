@@ -8,7 +8,7 @@ app.listen(PORT, function(){
 });
 
 app.set('view engine', 'ejs');
-app.use( express.static( "public" ) );
+app.use('/assets', express.static( 'assets'));
 app.use('/',route);
 app.use('/bye',route);
 app.use('/users/:id',route);

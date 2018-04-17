@@ -1,0 +1,30 @@
+.landingpage{
+    display:grid;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-rows: 2em auto;
+    grid-template-areas:
+        "topleft topmiddle topright"
+        "bottomleft bottommiddle bottomright";
+}
+
+topleft{
+    grid-area: topleft;
+}
+
+topmiddle{
+    grid-area: topmiddle;
+}
+
+topright{
+    grid-area: topright;
+}
+
+bottomleft{
+    grid-area: bottomleft;
+}
+bottommiddle{
+    grid-area: bottommiddle;
+}
+bottomright{
+    grid-area: bottomright;
+}
