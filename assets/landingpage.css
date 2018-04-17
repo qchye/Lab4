@@ -1,30 +1,43 @@
 .landingpage{
     display:grid;
     grid-template-columns: 10fr 1fr 1fr;
-    grid-template-rows: 2em auto;
+    grid-template-rows: 6em 36em 6em;
+
     grid-template-areas:
         "topleft topmiddle topright"
+        "middleleft middlemiddle middleright"
         "bottomleft bottommiddle bottomright";
 }
 
-topleft{
+topleft {
     grid-area: topleft;
+    background-color: #152918;
+    color: white;
 }
 
 topmiddle{
     grid-area: topmiddle;
+    background-color: #152918;
+    color: white;
 }
 
-topright{
+topright {
     grid-area: topright;
+    background-color: #152918;
+    color: white;
+}
+middleleft {
+    grid-area: middleleft;
 }
 
 bottomleft{
     grid-area: bottomleft;
 }
+
 bottommiddle{
     grid-area: bottommiddle;
 }
+
 bottomright{
     grid-area: bottomright;
 }
