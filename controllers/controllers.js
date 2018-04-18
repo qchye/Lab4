@@ -1,23 +1,38 @@
 const database = require("../models/db.js");
 //const userlist = [database.user1 , database.user2];
-module.exports.fetchMainPage =
+module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
             {});
     };
-/*
-module.exports.fetchBye =
+
+module.exports.fetchHome =
     function(req, res){
-        res.send("goodbye world");
+        res.render("home.ejs",
+            {});
     };
 
-module.exports.fetchSpecificId =
+module.exports.fetchContact =
     function(req, res){
-        res.send(userlist[req.params.id].name);
+        res.render("contactus.ejs",
+            {});
     };
-module.exports.fetchAllName =
+
+module.exports.fetchProfileCharity =
     function(req, res){
-        res.render("user_template.ejs",
-            {alluser:userlist});
+        res.render("ProfileCharity.ejs",
+            {});
     };
-    */
+
+module.exports.fetchProfileWaster =
+    function(req, res){
+        res.render("ProfileWaster.ejs",
+            {});
+    };
+
+module.exports.fetchMessage =
+    function(req, res){
+        res.render("message.ejs",
+            {});
+    };
+
