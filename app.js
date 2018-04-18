@@ -15,7 +15,3 @@ app.use('/profilewaster',route);
 app.use('/profilecharity',route);
 app.use('/message',route);
 app.use('/contactus',route);
-
-
-
-
