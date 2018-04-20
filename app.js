@@ -3,18 +3,15 @@ const app = express();
 const route = require("./routes/router.js");
 const PORT = process.env.PORT || 3000;
 
-
 app.listen(PORT, function(){
     console.log('Express serving at port ${PORT}');
 });
+
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use('/assets', express.static('assets'));
 app.use('/',route);
-app.use('/bye',route);
-app.use('/users/:id',route);
-app.use('/users',route);
-
-
-
-
-
+app.use('/home',route);
+app.use('/profilewaster',route);
+app.use('/profilecharity',route);
+app.use('/message',route);
+app.use('/contactus',route);

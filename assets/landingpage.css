@@ -1,0 +1,66 @@
+.landingpage{
+    display:grid;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-rows: 6em 36em 6em;
+
+    grid-template-areas:
+        "topleft topmiddle topright"
+        "middleleft middlemiddle middleright"
+        "bottomleft bottommiddle bottomright";
+}
+
+body{
+    font-family: "Bradley Hand ITC";
+}
+
+topleft{
+    grid-area: topleft;
+    background-color: #152918;
+    color: white;
+    padding-left: 8px;
+    padding-top: 5px;
+    font-size: 2em;
+}
+
+topmiddle{
+    grid-area: topmiddle;
+    background-color: #152918;
+    padding-top: 5px;
+    font-size: 2em;
+    color: white;
+}
+
+topright {
+    grid-area: topright;
+    background-color: #152918;
+    padding-left: 8px;
+    padding-top: 5px;
+    font-size: 2em;
+    color: white;
+}
+middleleft {
+    grid-area: middleleft;
+}
+
+middlemiddle {
+    grid-area: middlemiddle;
+}
+
+middleright {
+    grid-area: middleright;
+}
+
+bottomleft{
+    grid-area: bottomleft;
+}
+
+bottommiddle{
+    grid-area: bottommiddle;
+}
+
+bottomright{
+    grid-area: bottomright;
+}
+body{
+    margin:0px;
+}
