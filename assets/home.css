@@ -1,0 +1,143 @@
+.home{
+    display:grid;
+    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-rows: 6em 38em 7em;
+
+    grid-template-areas:
+        "topleft topmiddle topright"
+        "middleleft middlemiddle middleright"
+        "bottomleft bottommiddle bottomright";
+}
+body{
+    font-family: "Bradley Hand ITC";
+}
+
+topleft {
+    grid-area: topleft;
+    background-color: darkgreen;
+    color: white;
+    padding-left: 8px;
+    padding-top: 1px;
+    font-size: 2em;
+}
+
+topmiddle{
+    grid-area: topmiddle;
+    background-color: darkgreen;
+    padding-top: 1px;
+    font-size: 2em;
+    color: white;
+}
+
+topright {
+    grid-area: topright;
+    background-color: darkgreen;
+    padding-left: 8px;
+    padding-top: 1px;
+    font-size: 2em;
+    color: white;
+}
+middleleft {
+    grid-area: middleleft;
+    margin: 10px;
+    margin-bottom: 2px;
+    border: double;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 18px 10px;
+    background-color:#f4f4f4;
+}
+input[type=text] {
+    width: 800px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    background-image: url(https://www.w3schools.com/howto/searchicon.png);
+    padding: 12px 20px 12px 40px;
+
+}
+.search {
+    background-color: white;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    color: black;
+    padding: 12px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    font-family: "Bradley Hand ITC";
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.message {
+    background-color: white;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    font-family: "Bradley Hand ITC";
+    margin: 4px 2px;
+    cursor: pointer;
+}
+middlemiddle{
+    grid-area: middlemiddle;
+    margin: 10px;
+    font-size: 2em;
+    color: black;
+}
+
+bottomleft{
+    grid-area: bottomleft;
+}
+
+bottommiddle{
+    grid-area: bottommiddle;
+}
+
+bottomright{
+    grid-area: bottomright;
+    margin-top: 30px;
+}
+.feeds1, .feeds2{
+    background-color: white;
+    margin: 10px;
+    border: groove;
+    border-color: white;
+    padding: 2px 2px;
+    width: 1300px;
+    height: 210px;
+    font-family: "Bradley Hand ITC";
+}
+.pic1, .pic2{
+    margin: 6px;
+    float: left;
+    border: 1px solid #ddd;
+    width: 15em;
+    height: 12em;
+}
+.section{
+
+}
+body{
+    margin:0px;
+}
+.desp1{
+    overflow: auto;
+    border:1px solid #000;
+    width: 1000px;
+    height: 180px;
+}
+.feeds1 span, .feeds2 span{
+    font-size: 36px;
+}
