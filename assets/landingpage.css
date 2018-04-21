@@ -1,7 +1,7 @@
 .landingpage{
     display:grid;
-    grid-template-columns: 25% 60% 5% 5% 5%;
-    grid-template-rows: 1fr 1fr 3fr;
+    grid-template-columns: 35% 50% 5% 5% 5%;
+    grid-template-rows: 50% 20%;
 
     grid-template-areas:
         "r1c1 r1c2 r1c3 r1c4 r1c5"
@@ -24,7 +24,7 @@ body{
 
 r1c1{
     background-image: url('green_apple.png');
-    background-size: 50px 75px;
+    background-size: 50px 68px;
     background-repeat: no-repeat;
     background-position: 24px 8px;
     grid-area: r1c1;
@@ -69,8 +69,9 @@ r1c5 {
 
 r2c1 {
     grid-area: r2c1;
+    font-size: 22px;
+    font-weight: lighter;
     text-align: right;
-    padding-right: 10px;
 }
 
 #searchBar {
@@ -95,6 +96,7 @@ r2c2 {
     grid-area: r2c2;
     font-size: 22px;
     font-weight: lighter;
+    padding-top: 30px;
 }
 
 r2c3 {
