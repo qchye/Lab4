@@ -48,8 +48,10 @@ middleleft {
     margin: 10px;
     margin-bottom: 2px;
     padding: 18px 10px;
-
-
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    grid-template-areas:
+            "friendlist messagebox";
 }
 
 middlemiddle{
@@ -73,7 +75,7 @@ bottomright{
 }
 
 .chatbox {
-    float: right;
+    position: relative;
     border: double;
     border-width: 2px;
     border-radius: 5px;
@@ -83,6 +85,7 @@ bottomright{
     box-shadow: 0 3px #ccc;
 }
 .friendlist{
+    position:relative;
     border: double;
     border-width: 2px;
     border-radius: 5px;
