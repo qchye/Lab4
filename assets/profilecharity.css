@@ -4,7 +4,7 @@
     grid-template-rows: 6em 12em 8em 12em;
 
     grid-template-areas:
-        "a a a a a m m m k k k k"
+        "l l l l l l m m m k k k"
         "c c c d d d e f f f f f"
         "g g g g g g h h h h h h"
         "n n n n n n h h h h h h";
@@ -21,8 +21,8 @@ body{
     background-color: #F0EAD6;
 }
 
-a{
-    grid-area: a;
+l{
+    grid-area: l;
     background-color: #152918;
     color: white;
     padding-left: 2.5em;
@@ -33,18 +33,16 @@ a{
 m{
     grid-area: m;
     background-color: #152918;
-    padding-top: 20px;
-    margin-left: -4em;
-    font-size: 20px;
+    padding-top: 1px;
+    font-size: 2em;
     color: white;
 }
 
 k {
     grid-area: k;
     background-color: #152918;
-    padding-top: 20px;
-    margin-left: -2em;
-    font-size: 20px;
+    padding-top: 1px;
+    font-size: 2em;
     color: white;
 }
 
@@ -148,8 +146,9 @@ n{
     margin-bottom: 1em;
     width: 870px;
     height: 680px;
-    border: 1px solid black;
-    box-shadow: 3px 3px 5px 6px #E3DAC9;
+    border: double;
+    border-width: 2px;
+    border-radius: 5px;
     background-color: #F3E5AB;
 }
 
@@ -167,4 +166,20 @@ button{
     cursor: pointer;
     box-shadow: 2px 2px 5px 3px #C2B280;
     background-color: #EEDC82;
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    font-size: 100%;
+    text-decoration: none;
+
+}
+a:active {
+    text-decoration: none;
 }

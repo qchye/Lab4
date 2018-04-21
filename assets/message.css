@@ -1,5 +1,10 @@
+@font-face{
+    font-family: joanneshandwriting;
+    src: url(/assets/fonts/joanneshandwriting.otf);
+}
+
 body{
-    font-family: "Bradley Hand ITC";
+    font-family: joanneshandwriting;
     margin: 0px;
 }
 .home{
@@ -14,16 +19,16 @@ body{
 }
 topleft {
     grid-area: topleft;
-    background-color: darkgreen;
+    background-color: #152918;
     color: white;
-    padding-left: 8px;
+    padding-left: 2.5em;
     padding-top: 1px;
     font-size: 2em;
 }
 
 topmiddle{
     grid-area: topmiddle;
-    background-color: darkgreen;
+    background-color: #152918;
     padding-top: 1px;
     font-size: 2em;
     color: white;
@@ -31,7 +36,7 @@ topmiddle{
 
 topright {
     grid-area: topright;
-    background-color: darkgreen;
+    background-color: #152918;
     padding-left: 8px;
     padding-top: 1px;
     font-size: 2em;
@@ -96,7 +101,24 @@ bottomright{
     text-align: center;
     font-size: 24px;
 }
-.a{
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+.friendlist a:visited{
+    color: black;
+    text-decoration:none;
+}
+a:hover {
+    font-size: 100%;
+    text-decoration: none;
+
+}
+a:active {
     text-decoration: none;
 }
 
@@ -133,7 +155,6 @@ bottomright{
 .friend .user-photo .photo{
     width: 60px;
     height: 60px;
-    background: #eee;
     border-radius: 50%;
 }
 
@@ -147,12 +168,12 @@ bottomright{
 }
 
 .friend .chat-message {
-    background: #1adda4;
+    background: dodgerblue;
 
 }
 
 .self .chat-message {
-    background: #1ddced;
+    background: darkgreen;
     order: -1;
 }
 
@@ -192,6 +213,7 @@ bottomright{
     -webkit-transaction: background .2s ease;
     -moz-transaction: backgroud .2s ease;
     -o-transaction: backgroud .2s ease;
+    font-family: joanneshandwriting;
 }
 
 .chat-form button:hover {
