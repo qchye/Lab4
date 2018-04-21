@@ -8,11 +8,12 @@
         "middleleft middlemiddle middleright"
         "bottomleft bottommiddle bottomright";
 }
+
 body{
     font-family: "Bradley Hand ITC";
 }
 
-topleft {
+topleft{
     grid-area: topleft;
     background-color: #152918;
     color: white;
@@ -39,6 +40,14 @@ topright {
 }
 middleleft {
     grid-area: middleleft;
+}
+
+middlemiddle {
+    grid-area: middlemiddle;
+}
+
+middleright {
+    grid-area: middleright;
 }
 
 bottomleft{

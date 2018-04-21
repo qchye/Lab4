@@ -1,0 +1,99 @@
+<head>
+    <link rel="stylesheet" href="/assets/profilewaster.css">
+</head>
+<body>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <input type="text" placeholder="Subject">
+        <textarea placeholder="Description"></textarea>
+        <input type="submit" value="Submit">
+    </div>
+
+</div>
+
+<div class="profilewaster">
+
+    <l>
+        <p>Food 4 Thought</p>
+    </l>
+    <m>
+        <p>Profile</p>
+    </m>
+    <k>
+        <p>Log Out</p>
+    </k>
+    <div class="box">
+        <c>
+            <img src="/assets/feng_coffee.jpg" width="136" height="120"
+                 style="border: 1px black solid;box-shadow: 2px 2px 5px 3px #C2B280;">
+        </c>
+
+        <d>
+            <p style="font-size: 30px">The Caffeine Addicts</p>
+            <p>Waste Provider</p>
+            <p>Member Since :- 2018</p>
+        </d>
+
+        <e>
+            <button style="box-shadow: -2px 2px 5px 3px #C2B280;">Report</button>
+        </e>
+
+        <f>
+            <!-- Trigger/Open The Modal -->
+            <button id="myBtn">Contact</button>
+        </f>
+        <g>
+            <p style="padding-left: 7em;font-size: 24px">Bio</p>
+            <div class="box1">The Caffeine Addicts opened up its first cafe in 2018 in the
+                heart of Melbourne CBD. Our mission is to serve the finest and most
+                authentic coffee in all of Melbourne. With our line of highly-trained
+                Baristas, we vow to provide the best quality of service.</div>
+        </g>
+        <h>
+            <p style="padding-left: 2em;font-size: 24px">Charities Supported</p>
+            <div class="box2">Mission Australia<br>Blue Care<br><a href="profilecharity">Gift of Bread</a></div>
+            <p style="padding-top: 9em;padding-left: 8em">***Recommended by us</p>
+        </h>
+
+        <n>
+            <p style="padding-left: 2em;font-size: 24px">Waste Produced</p>
+            <div class="box3">Bread products<br>Milk<br>Coffee Beans</div>
+        </n>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+</body>

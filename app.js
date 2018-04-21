@@ -8,7 +8,7 @@ app.listen(PORT, function(){
 });
 
 app.set('view engine', 'ejs');
-app.use('/assets', express.static( 'assets'));
+app.use('/assets', express.static('assets'));
 app.use('/',route);
 app.use('/home',route);
 app.use('/profilewaster',route);

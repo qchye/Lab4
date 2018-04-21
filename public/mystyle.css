@@ -1,0 +1,52 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bgimg {
+    background-image: url('food_wastage_wallpaper.jpg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 26px;
+}
+
+.topleft {
+    position: absolute;
+    top: 0;
+    left: 16px;
+}
+
+.bottomright {
+    position: absolute;
+    bottom: 0;
+    right: 16px;
+}
+
+.middleleft {
+    position: absolute;
+    top: 45%;
+    left: 16%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.middleright {
+    position: absolute;
+    top: 8%;
+    right: 18%;
+    transform: translate(50%, 50%);
+    text-align: center;
+}
+
+hr {
+    margin: auto;
+    width: 40%;
+}
+p2 {
+    font-size: 18px;
+
+}
