@@ -1,7 +1,7 @@
 .landingpage{
     display:grid;
-    grid-template-columns: 25% 60% 5% 5% 5%;
-    grid-template-rows: 1fr 1fr 3fr;
+    grid-template-columns: 35% 50% 5% 5% 5%;
+    grid-template-rows: 50% 20%;
 
     grid-template-areas:
         "r1c1 r1c2 r1c3 r1c4 r1c5"
@@ -16,15 +16,15 @@
 
 body{
     font-family: 'Radnika';
-    background-image: url('image.png');
+    background-image: url('image.jpg');
     background-repeat: no-repeat;
-    background-size: 1920px 1080px;
+    background-size: cover;
     color: white;
 }
 
 r1c1{
     background-image: url('green_apple.png');
-    background-size: 50px 75px;
+    background-size: 50px 68px;
     background-repeat: no-repeat;
     background-position: 24px 8px;
     grid-area: r1c1;
@@ -33,6 +33,7 @@ r1c1{
     font-weight: 900;
     padding-left: 90px;
     padding-top: 10px;
+    opacity: 1;
 }
 
 Slogan {
@@ -68,8 +69,9 @@ r1c5 {
 
 r2c1 {
     grid-area: r2c1;
+    font-size: 22px;
+    font-weight: lighter;
     text-align: right;
-    padding-right: 10px;
 }
 
 #searchBar {
@@ -89,10 +91,12 @@ r2c1 {
      opacity: 0.75;
      font-style: italic;
  }
+
 r2c2 {
     grid-area: r2c2;
     font-size: 22px;
     font-weight: lighter;
+    padding-top: 30px;
 }
 
 r2c3 {
@@ -129,19 +133,15 @@ body{
     outline: none;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
+a {
     color: white;
-    text-decoration: none;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
 }
-a:hover {
-    font-size: 100%;
-    text-decoration: none;
 
-}
-a:active {
-    text-decoration: none;
+a:hover {
+    color: #BDE13F;
 }
