@@ -6,9 +6,14 @@ module.exports.fetchLanding =
             {});
     };
 
-module.exports.fetchHome =
+module.exports.fetchCafeHome =
     function(req, res){
-        res.render("home.ejs",
+        res.render("cafehome.ejs",
+            {});
+    };
+module.exports.fetchCharityHome =
+    function(req, res){
+        res.render("charityhome.ejs",
             {});
     };
 
@@ -29,7 +34,16 @@ module.exports.fetchProfileWaster =
         res.render("ProfileWaster.ejs",
             {});
     };
-
+module.exports.fetchCharityUser =
+    function(req, res){
+        res.render("charityuser.ejs",
+            {});
+    };
+module.exports.fetchWasterUser =
+    function(req, res){
+        res.render("wasteruser.ejs",
+            {});
+    };
 module.exports.fetchMessage =
     function(req, res){
         res.render("message.ejs",
