@@ -133,19 +133,6 @@ body{
     outline: none;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
+a {
     color: white;
-    text-decoration: none;
-}
-a:hover {
-    font-size: 100%;
-    text-decoration: none;
-
-}
-a:active {
-    text-decoration: none;
 }
