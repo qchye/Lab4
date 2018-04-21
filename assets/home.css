@@ -4,7 +4,7 @@
 }
 .home{
     display:grid;
-    grid-template-columns: 10fr 1fr 1fr;
+    grid-template-columns: 87em 9.6em 10em;
     grid-template-rows: 6em 38em 7em;
 
     grid-template-areas:
