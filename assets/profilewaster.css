@@ -1,14 +1,48 @@
-.profilewaster{
-    display:grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 6em 12em 8em 12em;
-
-    grid-template-areas:
-            "l l l l l m m m k k k k"
-            "c c c d d d e f f f f f"
-            "g g g g g g h h h h h h"
-            "n n n n n n h h h h h h";
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 6em 38em 7em;
+    grid-template-areas: "banner  midsection bottompart";
 }
+
+.banner {
+    grid-area: banner;
+    display:grid;
+    grid-template-columns: 80% 10% 10%;
+    grid-template-areas: "l m k"
+}
+
+
+
+.profilecontent{
+    grid-area: midesection;
+    position: center;
+    margin: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    display:grid;
+    zoom: 120%;
+    border: double;
+    border-width: 2px;
+    border-radius: 5px;
+    grid-template-columns: repeat(5, 20%);;
+    grid-template-rows: 33% 67%;
+    grid-template-areas:
+            "primaryinfo primaryinfo primaryinfo buttons buttons"
+            "secondaryinfo secondaryinfo secondaryinfo tertiaryinfo tertiaryinfo"
+
+}
+
+.bottompart{
+    grid-area: bottompart;
+    display: grid;
+    margin-top: -2%;
+    margin-left: 85%
+
+}
+
 
 @font-face{
     font-family: joanneshandwriting;
@@ -21,7 +55,7 @@ body{
     background-color: #F0EAD6;
 }
 
-l{
+.l{
     grid-area: l;
     background-color: #152918;
     color: white;
@@ -30,7 +64,7 @@ l{
     font-size: 2em;
 }
 
-m{
+.m{
     grid-area: m;
     background-color: #152918;
     padding-top: 1px;
@@ -38,7 +72,7 @@ m{
     color: white;
 }
 
-k {
+.k {
     grid-area: k;
     background-color: #152918;
     padding-top: 1px;
@@ -46,65 +80,44 @@ k {
     color: white;
 }
 
-c{
-    grid-area: c;
-    padding-top: 4em;
-    padding-left: 5em;
-    color: white;
-
-}
-
-d{
-    grid-area: d;
-
-    padding-left: 1em;
+.primaryinfo{
+    grid-area: primaryinfo;
+    display: flex;
+    grid-row-gap: 4em;
     padding-top: 2em;
+    padding-left: 4em;
     margin-top: 1em;
     line-height: 0.5em;
     font-size: 18px;
     color: black;
 }
 
-e{
-    grid-area: e;
-
-    padding-left: 8em;
+.buttons{
+    grid-area: buttons;
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 1em;
+    padding-left: 3em;
     padding-top: 7em;
     font-size: 10px;
-    color: black;
 }
 
-f{
-    grid-area: f;
-
-    padding-left: 2em;
-    padding-top: 7em;
-    font-size: 10px;
-    color: black;
-}
-
-g{
-    grid-area: g;
-
+.secondaryinfo{
+    grid-area: secondaryinfo;
+    display: flex;
+    flex-flow: column wrap;
     padding-left: 6em;
     padding-right: 1em;
-    font-size: 14px;
+    font-size: 16px;
     color: black;
 }
 
-h{
-    grid-area: h;
-
-    padding-left: 4em;
-    font-size: 18px;
-    color: black;
-}
-
-n{
-    grid-area: n;
-
-    margin-top: -16.5em;
-    padding-left: 8em;
+.tertiaryinfo{
+    grid-area: tertiaryinfo;
+    display: flex;
+    flex-flow: column wrap;
+    padding-left: 2em;
+    padding-right: 2em;
     font-size: 18px;
     color: black;
 }
@@ -137,6 +150,7 @@ n{
     margin-top: -1em;
     width: 220px;
     height: 160px;
+    line-height: 140%;
     border: 1px solid black;
     background-color: #EEDC82;
     box-shadow: 2px 2px 5px 3px #C2B280;
@@ -161,6 +175,8 @@ n{
 
 button{
     background-color: #EEDC82;
+    width: 6em;
+    height: 3em;
     border: black;
     border-style: solid;
     border-width: 1px;
@@ -175,6 +191,7 @@ button{
     box-shadow: 2px 2px 5px 3px #C2B280;
 }
 a:link {
+    color: white;
     text-decoration: none;
 }
 
@@ -183,51 +200,16 @@ a:visited {
     text-decoration: none;
 }
 .box2 a:visited{
-    color: black;
+    color: white;
     text-decoration: none;
 }
 a:hover {
+    color: white;
     font-size: 100%;
     text-decoration: none;
 
 }
 a:active {
+    color: white;
     text-decoration: none;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    z-index: 10; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 20%;
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }

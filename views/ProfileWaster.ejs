@@ -3,99 +3,66 @@
 </head>
 <body>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <input type="text" placeholder="Subject">
-        <textarea placeholder="Description"></textarea>
-        <input type="submit" value="Submit">
+<div class="page">
+    <div class="banner">
+        <div class="l">
+            <p><a href="/charityhome">Food 4 Thought</a></p>
+        </div>
+        <div class="m">
+            <p><a href="/charityuser">Profile</a></p>
+        </div>
+        <div class="k">
+            <p><a href="/">Log out</a></p>
+        </div>
     </div>
+    <div class="profilecontent">
+        <div class="primaryinfo">
+            <div>
+                <img src="/assets/feng_coffee.jpg" width="136" height="120"
+                    style="border: 1px black solid;box-shadow: 2px 2px 5px 3px #C2B280;">
+            </div>
+            <div style="margin-left: 2em">
+                <p style="font-size: 30px">The Caffeine Addicts</p>
+                <p>Waste Provider</p>
+                <p>Member Since :- 2018</p>
+            </div>
+        </div>
 
-</div>
+        <div class="buttons">
+            <div>
+                <button style="box-shadow: -2px 2px 5px 3px #C2B280;">Report</button>
+            </div>
+            <div style="padding-left: 10%">
+                <a href="/message"><button>Contact</button></a>
+            </div>
+        </div>
 
-<div class="profilewaster">
-
-    <l>
-        <p><a href="/charityhome">Food 4 Thought</a></p>
-    </l>
-    <m>
-        <p><a href="/charityuser">Profile</a></p>
-    </m>
-    <k>
-        <p><a href="/">Log out</a></p>
-    </k>
-    <div class="box">
-        <c>
-            <img src="/assets/feng_coffee.jpg" width="136" height="120"
-                 style="border: 1px black solid;box-shadow: 2px 2px 5px 3px #C2B280;">
-        </c>
-
-        <d>
-            <p style="font-size: 30px">The Caffeine Addicts</p>
-            <p>Waste Provider</p>
-            <p>Member Since :- 2018</p>
-        </d>
-
-        <e>
-            <button style="box-shadow: -2px 2px 5px 3px #C2B280;">Report</button>
-        </e>
-
-        <f>
-            <!-- Trigger/Open The Modal -->
-            <a href="/message">
-            <button id="myBtn">Contact</button>
-            </a>
-        </f>
-        <g>
-            <p style="padding-left: 7em;font-size: 24px">Bio</p>
-            <div class="box1">The Caffeine Addicts opened up its first cafe in 2018 in the
-                heart of Melbourne CBD. Our mission is to serve the finest and most
-                authentic coffee in all of Melbourne. With our line of highly-trained
-                Baristas, we vow to provide the best quality of service.</div>
-        </g>
-        <h>
+        <div class="secondaryinfo">
+            <div>
+                <p style="padding-left: 7em;font-size: 24px">Bio</p>
+                <div class="box1">The Caffeine Addicts opened up its first cafe in 2018 in the
+                    heart of Melbourne CBD. Our mission is to serve the finest and most
+                    authentic coffee in all of Melbourne. With our line of highly-trained
+                    Baristas, we vow to provide the best quality of service.</div>
+            </div>
+            <div style="padding-left: 4em">
+                <p style="padding-left: 2.2em;font-size: 24px">Waste Produced</p>
+                <div class="box3" style="font-size: 18px;">Bread products<br>Milk
+                    <br>Coffee Beans</div>
+            </div>
+        </div>
+        <div class="tertiaryinfo">
             <p style="padding-left: 2em;font-size: 24px">Charities Supported</p>
-            <div class="box2">Mission Australia<br>Blue Care<br><a href="profilecharity">Gift of Bread</a></div>
-            <p style="padding-top: 9em;padding-left: 8em">***Recommended by us</p>
-        </h>
-
-        <n>
-            <p style="padding-left: 2em;font-size: 24px">Waste Produced</p>
-            <div class="box3">Bread products<br>Milk<br>Coffee Beans</div>
-        </n>
+            <div class="box2">Mission Australia<br>Blue Care<br><a href="profilecharity"
+                style="color: black">Gift of Bread</a></div>
+            <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
+        </div>
+    </div>
+    <div class="bottompart">
+        Powered by The Caffeine Addicts!
     </div>
 </div>
-
-<script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 
 </body>
