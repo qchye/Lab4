@@ -10,8 +10,8 @@
 .banner {
     grid-area: banner;
     display:grid;
-    grid-template-columns: 80% 10% 10%;
-    grid-template-areas: "l m k"
+    grid-template-columns: 80% 20%;
+    grid-template-areas: "homelink sidelink"
 }
 
 
@@ -26,6 +26,7 @@
     zoom: 120%;
     border: double;
     border-width: 2px;
+    border-color: black;
     border-radius: 5px;
     grid-template-columns: repeat(5, 20%);;
     grid-template-rows: 33% 67%;
@@ -45,36 +46,31 @@
 
 
 @font-face{
-    font-family: joanneshandwriting;
-    src: url(/assets/fonts/joanneshandwriting.otf);
+    font-family: Radnika-MediumCondensed;
+    src: url(/assets/fonts/Radnika-MediumCondensed.woff2);
 }
 
 body{
-    font-family: joanneshandwriting;
+    font-family: Radnika-MediumCondensed;
     margin:0px;
-    background-color: #F0EAD6;
+    background-image: url("/assets/image.png");
+    color: white;
 }
 
-.l{
-    grid-area: l;
-    background-color: #152918;
+.homelink{
+    grid-area: homelink;
+    display: flex;
+    flex-direction: row;
     color: white;
-    padding-left: 2.5em;
+    padding-left: 1em;
     padding-top: 5px;
     font-size: 2em;
 }
 
-.m{
-    grid-area: m;
-    background-color: #152918;
-    padding-top: 1px;
-    font-size: 2em;
-    color: white;
-}
-
-.k {
-    grid-area: k;
-    background-color: #152918;
+.sidelink {
+    grid-area: sidelink;
+    display: flex;
+    flex-direction: row;
     padding-top: 1px;
     font-size: 2em;
     color: white;
@@ -88,7 +84,6 @@ body{
     margin-top: 1em;
     line-height: 0.25em;
     font-size: 18px;
-    color: black;
 }
 
 .secondaryinfo{
@@ -98,7 +93,6 @@ body{
     padding-left: 2.5em;
     padding-right: 1em;
     font-size: 16px;
-    color: black;
 }
 
 .tertiaryinfo{
@@ -108,7 +102,6 @@ body{
     padding-left: 1em;
     padding-right: 3em;
     font-size: 18px;
-    color: black;
 }
 
 .box1{
@@ -117,9 +110,10 @@ body{
     margin-top: -1.5em;
     width: 360px;
     height: 100px;
-    border: 1px solid black;
-    background-color: #EEDC82;
-    box-shadow: -2px 2px 5px 3px #C2B280;
+    border: 1.5px solid black;
+    border-radius: 0.25em;
+
+
 }
 
 .box2{
@@ -129,9 +123,10 @@ body{
     width: 240px;
     height: 170px;
     line-height: 140%;
-    border: 1px solid black;
-    background-color: #EEDC82;
-    box-shadow: 2px 2px 5px 3px #C2B280;
+    border: 1.5px solid black;
+    border-radius: 0.25em;
+
+
 }
 
 .box3{
@@ -140,42 +135,26 @@ body{
     width: 220px;
     height: 160px;
     line-height: 140%;
-    border: 1px solid black;
-    background-color: #EEDC82;
-    box-shadow: 2px 2px 5px 3px #C2B280;
-}
+    border: 1.5px solid black;
+    border-radius: 0.25em;
 
-.box{
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 0.1em;
-    padding-top: 0.1em;
-    margin-left: 10em;
-    margin-top: 3em;
-    margin-bottom: 1em;
-    width: 870px;
-    height: 680px;
-    border: double;
-    border-width: 2px;
-    border-radius: 5px;
-    background-color: #F3E5AB;
 
 }
 
 button{
-    background-color: #EEDC82;
+    background-color: transparent;
     border: black;
     border-style: solid;
     border-width: 1px;
     border-radius: 12px;
-    color: black;
+    color: white;
     padding: 10px 18px;
     text-align: center;
     font-family: joanneshandwriting;
     font-size: 1em;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow: 2px 2px 5px 3px #C2B280;
+
 }
 a:link {
     color: white;

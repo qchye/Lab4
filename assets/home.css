@@ -1,10 +1,12 @@
 @font-face{
-    font-family: joanneshandwriting;
-    src: url(/assets/fonts/joanneshandwriting.otf);
+    font-family: Radnika-MediumCondensed;
+    src: url(/assets/fonts/Radnika-MediumCondensed.woff2);
 }
 .home{
     display:grid;
-    grid-template-columns: 87em 9.6em 10em;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 80% 10% 10%;
     grid-template-rows: 6em 38em 7em;
 
     grid-template-areas:
@@ -13,22 +15,24 @@
         "bottomleft bottommiddle bottomright";
 }
 body{
-    font-family: joanneshandwriting;
-    background-color: #F0EAD6;
+    font-family: Radnika-MediumCondensed;
+    margin: 0px;
+    background-image: url("/assets/image.png");
 }
 
 topleft {
     grid-area: topleft;
-    background-color: #152918;
+    display: flex;
+    flex-direction: row;
     color: white;
-    padding-left: 2.5em;
-    padding-top: 1px;
+    padding-left: 1em;
+    padding-top: 5px;
     font-size: 2em;
 }
 
 topmiddle{
     grid-area: topmiddle;
-    background-color: #152918;
+
     padding-top: 1px;
     font-size: 2em;
     color: white;
@@ -36,7 +40,7 @@ topmiddle{
 
 topright {
     grid-area: topright;
-    background-color: #152918;
+
     padding-left: 8px;
     padding-top: 1px;
     font-size: 2em;
@@ -50,7 +54,7 @@ middleleft {
     border-width: 2px;
     border-radius: 5px;
     padding: 18px 10px;
-    background-color: #F3E5AB;
+
 }
 input[type=text] {
     width: 800px;
@@ -67,12 +71,12 @@ input[type=text] {
 
 }
 .search {
-    background-color: #EEDC82;
-    border: solid;
+    background-color: transparent;
+    border: solid black;
     border-width: 1px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px 3px #C2B280;
-    color: black;
+
+    color: white;
     padding: 12px 36px;
     text-align: center;
     text-decoration: none;
@@ -83,12 +87,12 @@ input[type=text] {
     cursor: pointer;
 }
 .message {
-    background-color: #EEDC82;
-    border: solid;
+    background-color: transparent;
+    border: solid black;
     border-width: 1px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px 3px #C2B280;
-    color: black;
+
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -102,7 +106,7 @@ middlemiddle{
     grid-area: middlemiddle;
     margin: 10px;
     font-size: 2em;
-    color: black;
+    color: white;
 }
 
 bottomleft{
@@ -116,17 +120,18 @@ bottommiddle{
 bottomright{
     grid-area: bottomright;
     margin-top: 30px;
+    color: white;
 }
 .feeds1, .feeds2{
-    background-color: #EEDC82;
-    color: black;
+
+    color: white;
     margin: 10px;
     border: groove;
-    border-color: black;
+    border-color: white;
     border-width: 1px;
-    box-shadow: 2px 2px 5px 3px #C2B280;
+
     padding: 2px 2px;
-    width: 1300px;
+    width: auto;
     height: 210px;
 }
 .pic1, .pic2{
@@ -139,9 +144,7 @@ bottomright{
 .section{
 
 }
-body{
-    margin:0px;
-}
+
 .desp1{
     overflow: auto;
     border:1px solid #000;
