@@ -16,9 +16,9 @@
 
 body{
     font-family: 'Radnika';
-    background-image: url('image.png');
+    background-image: url('image.jpg');
     background-repeat: no-repeat;
-    background-size: 1920px 1080px;
+    background-size: cover;
     color: white;
 }
 
@@ -33,6 +33,7 @@ r1c1{
     font-weight: 900;
     padding-left: 90px;
     padding-top: 10px;
+    opacity: 1;
 }
 
 Slogan {
@@ -89,6 +90,7 @@ r2c1 {
      opacity: 0.75;
      font-style: italic;
  }
+
 r2c2 {
     grid-area: r2c2;
     font-size: 22px;
