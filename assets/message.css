@@ -1,16 +1,18 @@
 @font-face{
-    font-family: joanneshandwriting;
-    src: url(/assets/fonts/joanneshandwriting.otf);
+    font-family: Radnika-MediumCondensed;
+    src: url(/assets/fonts/Radnika-MediumCondensed.woff2);
 }
 
 body{
-    font-family: joanneshandwriting;
+    font-family: Radnika-MediumCondensed;
     margin: 0px;
-    background-color: #F0EAD6;
+    background-image: url("/assets/image2.png");
 }
 .home{
     display:grid;
-    grid-template-columns: 87em 9.6em 10em;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 80% 10% 10%;
     grid-template-rows: 6em 38em 7em;
 
     grid-template-areas:
@@ -20,16 +22,16 @@ body{
 }
 topleft {
     grid-area: topleft;
-    background-color: #152918;
+    display: flex;
+    flex-direction: row;
     color: white;
-    padding-left: 2.5em;
-    padding-top: 1px;
+    padding-left: 1em;
+    padding-top: 5px;
     font-size: 2em;
 }
 
 topmiddle{
     grid-area: topmiddle;
-    background-color: #152918;
     padding-top: 1px;
     font-size: 2em;
     color: white;
@@ -37,7 +39,6 @@ topmiddle{
 
 topright {
     grid-area: topright;
-    background-color: #152918;
     padding-left: 8px;
     padding-top: 1px;
     font-size: 2em;
@@ -58,7 +59,7 @@ middlemiddle{
     grid-area: middlemiddle;
     margin: 10px;
     font-size: 2em;
-    color: black;
+    color: white;
 }
 
 bottomleft{
@@ -72,6 +73,7 @@ bottommiddle{
 bottomright{
     grid-area: bottomright;
     margin-top: 30px;
+    color: white;
 }
 
 .chatbox {
@@ -81,8 +83,7 @@ bottomright{
     border-radius: 5px;
     width: 750px;
     height: 600px;
-    background-color: #F3E5AB;
-    box-shadow: 0 3px #ccc;
+
 }
 .friendlist{
     position:relative;
@@ -90,10 +91,9 @@ bottomright{
     border-width: 2px;
     border-radius: 5px;
     margin-left: 300px;
-    background-color: #F3E5AB;
+
     width: 324px;
     height: 600px;
-    box-shadow: 0 3px #ccc;
 }
 .friend1, .friend2{
     width: 324px;
@@ -189,7 +189,7 @@ a:active {
 }
 
 .chat-form textarea {
-    background: #fbfbfb;
+    background-color: transparent;
     width: 75%;
     height: 50px;
     border: 2px solid #000;
@@ -213,7 +213,6 @@ a:active {
     border: 1px black solid;
     margin: 0 10px;
     border-radius: 3px;
-    box-shadow: 0 1px 0 black;
     cursor: pointer;
     -webkit-transaction: background .2s ease;
     -moz-transaction: backgroud .2s ease;
