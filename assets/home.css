@@ -2,12 +2,20 @@
     font-family: Radnika-MediumCondensed;
     src: url(/assets/fonts/Radnika-MediumCondensed.woff2);
 }
+Slogan {
+    font-size: 20px;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 20px;
+    color: white;
+}
 .home{
     display:grid;
     width: 100%;
     height: 100%;
+    overflow: scroll;
     grid-template-columns: 80% 10% 10%;
-    grid-template-rows: 6em 38em 7em;
+    grid-template-rows: 1fr 10fr 1fr;
 
     grid-template-areas:
         "topleft topmiddle topright"
@@ -22,17 +30,21 @@ body{
 
 topleft {
     grid-area: topleft;
-    display: flex;
-    flex-direction: row;
+    background-image: url('green_apple.png');
+    background-size: 50px 68px;
+    background-repeat: no-repeat;
+    background-position: 24px 8px;
     color: white;
-    padding-left: 1em;
-    padding-top: 5px;
-    font-size: 2em;
+    font-size: 36px;
+    font-weight: 900;
+    padding-left: 90px;
+    padding-top: 10px;
+    opacity: 1;
 }
+
 
 topmiddle{
     grid-area: topmiddle;
-
     padding-top: 1px;
     font-size: 2em;
     color: white;
@@ -40,13 +52,15 @@ topmiddle{
 
 topright {
     grid-area: topright;
-
     padding-left: 8px;
     padding-top: 1px;
     font-size: 2em;
     color: white;
 }
 middleleft {
+
+}
+.allfeeds{
     grid-area: middleleft;
     margin: 10px;
     margin-bottom: 2px;
@@ -54,10 +68,9 @@ middleleft {
     border-width: 2px;
     border-radius: 5px;
     padding: 18px 10px;
-
 }
 input[type=text] {
-    width: 800px;
+    width: 70%;
     font-family: joanneshandwriting;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -68,16 +81,14 @@ input[type=text] {
     background-position: 10px 10px;
     background-image: url(https://www.w3schools.com/howto/searchicon.png);
     padding: 12px 20px 12px 40px;
-
 }
 .search {
     background-color: transparent;
     border: solid black;
     border-width: 1px;
     border-radius: 10px;
-
     color: white;
-    padding: 12px 36px;
+    padding: 8px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -91,15 +102,14 @@ input[type=text] {
     border: solid black;
     border-width: 1px;
     border-radius: 10px;
-
     color: white;
-    padding: 15px 32px;
+    padding: 2px 4px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 22px;
     font-family: joanneshandwriting;
-    margin: 4px 2px;
+    margin: 20px 2px;
     cursor: pointer;
 }
 middlemiddle{
@@ -122,36 +132,24 @@ bottomright{
     margin-top: 30px;
     color: white;
 }
-.feeds1, .feeds2{
-
+.feeds{
     color: white;
     margin: 10px;
     border: groove;
     border-color: white;
     border-width: 1px;
-
     padding: 2px 2px;
-    width: auto;
-    height: 210px;
+    width: 95%;
+    height: 300px;
 }
-.pic1, .pic2{
+.pic{
     margin: 6px;
     float: left;
     border: 1px solid #ddd;
     width: 15em;
     height: 12em;
 }
-.section{
-
-}
-
-.desp1{
-    overflow: auto;
-    border:1px solid #000;
-    width: 1000px;
-    height: 180px;
-}
-.feeds1 span, .feeds2 span{
+.feeds span{
     font-size: 36px;
 }
 a:link {
@@ -169,4 +167,59 @@ a:hover {
 }
 a:active {
     text-decoration: none;
+}
+@media (max-width: 855px){
+    .home{
+        grid-template-columns: 80% 10% 10%;
+        grid-template-rows: 4em 20fr 1fr;
+    }
+    .feeds span{
+        font-size: 22px;
+    }
+    .message{
+        font-size: 18px;
+        margin: 10px 1px;
+    }
+    .pic{
+        width: 10em;
+        height: 8em;
+    }
+    .search {
+        font-size: 15px;
+        padding: 10px 6px;
+    }
+    input[type=text]{
+        padding: 8px 16px 8px 16px;
+        font-size: 16px;
+        background-image: none;
+    }
+    topleft{
+        font-size: 1em;
+        background-size: 30px 48px;
+    }
+    Header{
+        font-size: 18px;
+    }
+    Slogan{
+        font-size: 12px;
+    }
+    topmiddle{
+        font-size: 1em;
+    }
+    topright{
+        font-size:1em;
+    }
+}
+@media (max-width: 440px){
+    input[type=text]{
+        background-image: none;
+    }
+    .message {
+        margin: 0px;
+        font-size: 14px;
+        padding: 2px 2px;
+    }
+    .feeds{
+        height:350px;
+    }
 }
