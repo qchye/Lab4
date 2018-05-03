@@ -60,9 +60,10 @@ middleleft {
     margin: 10px;
     margin-bottom: 2px;
     padding: 18px 10px;
-    display: flex;
-    flex-direction: row;
-    position: center;
+    display: grid;
+    grid-template-columns: 35% 75%;
+    grid-template-areas:
+            "friendsss chatsss";
 }
 
 middlemiddle{
@@ -83,41 +84,48 @@ bottommiddle{
 bottomright{
     grid-area: bottomright;
     margin-top: 30px;
+    padding-right: 25px;
     color: white;
 }
 
 .chatbox {
-    position: relative;
+    grid-area: chatsss;
     border: double;
     border-width: 2px;
     border-radius: 5px;
-    width: 65%;
-    height: 70%;
 
 }
 .friendlist{
-    position:relative;
+    grid-area: friendsss;
     border: double;
     border-width: 2px;
     border-radius: 5px;
-    width: 35%;
-    height: 70%;
+    font-size: 24px;
+    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-areas:
+            "friend1"
+            "friend2"
+            "friend3"
+            "friend4";
+
 }
-.middleleft .ul .li{
-    border: solid;
-    width: 35%;
+.friend1{
+    grid-area: friend1;
+}
+.friend2{
+    grid-area: friend2;
 }
 .friend1, .friend2{
-    width: 324px;
-    height: 100px;
-    margin-top:48px;
+    position:center;
+    padding: 10px;
     list-style-type: none;
     border-bottom: solid;
     border-bottom-color: black;
     border-bottom-width: 1px;
     text-align: center;
-    font-size: 24px;
+
 }
+
 a:link {
     text-decoration: none;
 }
@@ -158,7 +166,6 @@ a:active {
 
 .chat {
     display: flex;
-    flex-flow: row wrap;
     align-items: flex-start;
     margin-bottom: 10px;
 }
@@ -195,7 +202,6 @@ a:active {
 }
 
 .chat-form {
-    margin-top: 20px;
     display: flex;
     align-items: flex-start;
 }
@@ -236,8 +242,59 @@ a:active {
     background-color: #EEDC20;
 }
 
-@media (max-width: 1060px){
-    .friendlist{
-        width:220px;
+@media (max-width: 768px){
+    topleft{
+        font-size: 1em;
+        background-size: 30px 48px;
     }
+    Header{
+        font-size: 18px;
+    }
+    Slogan{
+        font-size: 12px;
+    }
+    topmiddle{
+        font-size: 1em;
+    }
+    topright{
+        font-size:1em;
+    }
+    middleleft{
+        grid-template-columns: 25% 85%;
+    }
+    bottomright{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px){
+    .friend .user-photo .photo{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    .self .user-photo .photo{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    .chat-form textarea {
+        width: 100%;
+        height: 95px;
+    }
+    .chat-form button {
+        font-size: 15px;
+    }
+    .friendlist{
+        font-size: 16px;
+    }
+    .chat .chat-message {
+        width: 80%;
+        padding: 10px;
+        margin: 5px 10px 0;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 18px;
+    }
+
 }
