@@ -22,10 +22,28 @@ Slogan {
         "middleleft middlemiddle middleright"
         "bottomleft bottommiddle bottomright";
 }
+.background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    background-image: url("/assets/image.jpg");
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
 body{
     font-family: Radnika-MediumCondensed;
     margin: 0px;
-    background-image: url("/assets/image2.png");
+    color: white;
 }
 
 topleft {
@@ -57,14 +75,12 @@ topright {
     font-size: 2em;
     color: white;
 }
-middleleft {
-
-}
 .allfeeds{
     grid-area: middleleft;
     margin: 10px;
     margin-bottom: 2px;
     border: double;
+    border: 1.5px solid yellowgreen;
     border-width: 2px;
     border-radius: 5px;
     padding: 18px 10px;
@@ -84,7 +100,8 @@ input[type=text] {
 }
 .search {
     background-color: transparent;
-    border: solid black;
+    border: solid;
+    border: 1.5px solid yellowgreen;
     border-width: 1px;
     border-radius: 10px;
     color: white;
@@ -99,7 +116,8 @@ input[type=text] {
 }
 .message {
     background-color: transparent;
-    border: solid black;
+    border: solid;
+    border: 1.5px solid yellowgreen;
     border-width: 1px;
     border-radius: 10px;
     color: white;
@@ -152,6 +170,7 @@ bottomright{
 .feeds span{
     font-size: 36px;
 }
+
 a:link {
     text-decoration: none;
 }
@@ -168,6 +187,7 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
 @media (max-width: 855px){
     .home{
         grid-template-columns: 80% 10% 10%;
