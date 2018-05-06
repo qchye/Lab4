@@ -152,6 +152,7 @@ bottomright{
 .feeds span{
     font-size: 36px;
 }
+
 a:link {
     text-decoration: none;
 }
@@ -168,6 +169,7 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
 @media (max-width: 855px){
     .home{
         grid-template-columns: 80% 10% 10%;

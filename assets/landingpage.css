@@ -129,6 +129,7 @@ a {
     -o-transition: color 0.2s ease-out;
     -ms-transition: color 0.2s ease-out;
     transition: color 0.2s ease-out;
+    text-decoration: none;
 }
 
 a:hover {

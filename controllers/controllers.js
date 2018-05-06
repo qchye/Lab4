@@ -1,5 +1,6 @@
-const database = require("../models/db.js");
-//const userlist = [database.user1 , database.user2];
+const mongoose = require('mongoose');
+const user = require("../models/userdb.js");
+
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
@@ -50,3 +51,17 @@ module.exports.fetchMessage =
             {});
     };
 
+module.exports.addUser =
+    function (req, res){
+        var newcafe = new user({
+            "name": "sevenseeds",
+            "address": "Carlton",
+            "distance": "300km",
+            "rating": "4.0",
+            "photo": "no photo yet"
+        });
+        cafe.save(function (err){
+            if (err) return res.sendStatus(403);
+            return res.end();
+        })
+    };
