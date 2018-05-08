@@ -29,7 +29,7 @@
             <% userlist.forEach(function(user){%>
             <a href="/profilewaster">
                 <div class="feeds js-click-block" >
-                    <img src="/assets/coffee.jpg" class = "pic">
+                    <img src=<%= user.photo %> class = "pic">
                     <span><b>Name:</b><%= user.name %></span><br>
                     <span><b>Location:</b><%= user.address %></span><br>
                     <span><b>Description:</b> <%= user.bio %></span>
