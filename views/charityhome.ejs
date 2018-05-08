@@ -1,42 +1,42 @@
+<!-- userlist is here-->
 <head>
     <link rel="stylesheet" href="/assets/home.css">
+    <script type="controller/javascript" src="../controllers/controllers.js"></script>
 </head>
 <body>
-
+<div class="background-image">
+</div>
 <div class="home">
     <topmiddle>
-        <p><a href="/charityuser">Profile</a></p>
+        <p><a href="/charityuser" class="headerlink">Profile</a></p>
     </topmiddle>
     <topleft>
-        <img src="/assets/green_apple.png" width="51" height="65">
-        <p><a href="/charityhome">Food 4 Thought</a></p>
+        <Header><a href="/charityhome">Food 4 Thought</a></Header>
+        <Slogan>Turning Trash Into Treasure.</Slogan>
     </topleft>
     <topright>
-        <p><a href="/">Log out</a></p>
+        <p><a href="/" class="headerlink">Log out</a></p>
     </topright>
     <middleleft>
+        <div class="allfeeds">
         <div class="section">
             <form>
-                <input type="text" name="search" placeholder="Search for cafe list">
-                <a href="/home">
+                <input type="text" name="search" placeholder="Search for cafe">
+                <a href="/charityhome">
                     <button class="button search">search</button>
                 </a>
             </form>
+            <% userlist.forEach(function(user){%>
             <a href="/profilewaster">
-                <div class="feeds1 js-click-block" >
-                    <img src="/assets/coffee.jpg" class = "pic1">
-                    <span><b>Name:</b> The Caffeine Addicts</span><br>
-                    <span><b>Location:</b> Carlton</span><br>
-                    <span><b>Description:</b> We are strong. We are kind. We are here to help homeless and poverty.</span>
+                <div class="feeds js-click-block" >
+                    <img src="/assets/coffee.jpg" class = "pic">
+                    <span><b>Name:</b><%= user.name %></span><br>
+                    <span><b>Location:</b><%= user.address %></span><br>
+                    <span><b>Description:</b> <%= user.bio %></span>
                 </div>
             </a>
-            <div class="feeds2 js-click-block">
-                <img src="/assets/cafe2.jpg" class = "pic2">
-                <span><b>Name:</b> Seven soil specialty coffee</span><br>
-                <span><b>Location:</b> Carlton</span><br>
-                <span><b>Description:</b> We love coffee and we love to provide freedom and positive energy to this society.</span>
+            <% });%>
             </div>
-
         </div>
     </middleleft>
     <middlemiddle>

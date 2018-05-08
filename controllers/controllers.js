@@ -1,5 +1,13 @@
-const database = require("../models/db.js");
-//const userlist = [database.user1 , database.user2];
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
+    if(err){
+        console.log('Some problem with the connection' + err);
+    }else{
+        console.log('The Mongoose connection is ready');
+    }
+});
+var usermodel = require("../models/userdb.js");
+
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
@@ -12,9 +20,36 @@ module.exports.fetchCafeHome =
             {});
     };
 module.exports.fetchCharityHome =
-    function(req, res){
-        res.render("charityhome.ejs",
-            {});
+    function(req, res, next){
+    /*
+        var newUser = usermodel({
+            "username": "Chye",
+            "name": "Sevenseeds ",
+            "type": "waster",
+            "address": "Carlton",
+            "email": "hahaha@hotmail.com",
+            "bio": "We are doing great job hahaha just come and visit our cafe.",
+            "wasteproduced": "nothing",
+            "photo": "/assets/cafe2.jpg",
+         });
+        newUser.save(function (err){
+            if (err) return res.sendStatus(403);
+            return res.end();
+        });*/
+        usermodel.find({}, function(err, users) {
+            if (err) {
+                res.send(err);
+            }else if (users.length) {
+                return res.render("charityhome.ejs",
+                    {userlist: users});
+                next();
+            }
+            else{
+                return res.render("charityhome.ejs",
+                    {userlist: users});
+                next();
+            }
+    });
     };
 
 module.exports.fetchContact =
@@ -50,3 +85,22 @@ module.exports.fetchMessage =
             {});
     };
 
+/* Adam use this part of codes to add user when press sign up, and change all the default info to req.params something,
+* link to the homepage root*/
+module.exports.addUser =
+    function (req, res){
+        var newUser = usermodel({
+            "username": "Chye",
+            "name": "The Caffeine Addict",
+            "type": "waster",
+            "address": "Carlton",
+            "email": "hahaha@hotmail.com",
+            "bio": "We are strong. We are kind. We are here to help homeless and poverty.",
+            "wasteproduced": "nothing",
+            "photo": "/assets/coffee.jpg",
+        });
+        newUser.save(function (err){
+            if (err) return res.sendStatus(403);
+            return res.end();
+        });
+    };
