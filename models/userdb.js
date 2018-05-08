@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var userSchema = mongoose.Schema(
+var Schema = mongoose.Schema;
+var userSchema = new Schema(
     {
         "username": String,
         "name": String,
@@ -28,4 +29,5 @@ Bio
 Waste provide/waste produce
 photo
  */
-module.exports = mongoose.model('user',userSchema);
+var User = mongoose.model('user',userSchema);
+module.exports = User;
