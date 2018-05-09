@@ -8,6 +8,7 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
     }
 });
 var usermodel = require("../models/userdb.js");
+var currentuser;
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
@@ -161,6 +162,7 @@ module.exports.authenticateUser =
             if (!user) {
                 return res.status(404).send('Incorrent username and/or password');
             }
+            currentuser = user;
             return res.status(200).send('Welcome back, ' + username);
         });
     };
