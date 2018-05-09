@@ -1,6 +1,6 @@
+<!-- userlist is here-->
 <head>
     <link rel="stylesheet" href="/assets/home.css">
-    <script type="controller/javascript" src="../controllers/controllers.js"></script>
 </head>
 <body>
 <div class="background-image">
@@ -19,27 +19,20 @@
     <middleleft>
         <div class="allfeeds">
         <div class="section">
-            <form>
-                <input type="text" name="search" placeholder="Search for cafe">
-                <a href="/charityhome">
-                    <button class="button search">search</button>
-                </a>
+            <form action="/charityhome" method="get">
+                <input type="text" name='search' placeholder="Search for cafe">
+                <button class="button search">search</button>
             </form>
-
+            <% userlist.forEach(function(user){%>
             <a href="/profilewaster">
                 <div class="feeds js-click-block" >
-                    <img src="/assets/coffee.jpg" class = "pic">
-                    <span><b>Name:</b> The Caffeine Addicts</span><br>
-                    <span><b>Location:</b> Carlton</span><br>
-                    <span><b>Description:</b> We are strong. We are kind. We are here to help homeless and poverty.</span>
+                    <img src=<%= user.photo %> class = "pic">
+                    <span><b>Name:</b><%= user.name %></span><br>
+                    <span><b>Location:</b><%= user.address %></span><br>
+                    <span><b>Description:</b> <%= user.bio %></span>
                 </div>
             </a>
-            <div class="feeds js-click-block">
-                <img src="/assets/cafe2.jpg" class = "pic">
-                <span><b>Name:</b> Seven soil specialty coffee</span><br>
-                <span><b>Location:</b> Carlton</span><br>
-                <span><b>Description:</b> We love coffee and we love to provide freedom and positive energy to this society.</span>
-            </div>
+            <% });%>
             </div>
         </div>
     </middleleft>

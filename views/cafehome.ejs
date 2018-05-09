@@ -18,27 +18,20 @@
     <middleleft>
         <div class="allfeeds">
             <div class="section">
-                <form>
-                    <input type="text" name="search" placeholder="Search for charity">
-                    <a href="/home">
-                        <button class="button search">search</button>
-                    </a>
+                <form action="/cafehome" method="get">
+                    <input type="text" name='search' placeholder="Search for charity">
+                    <button class="button search">search</button>
                 </form>
-                <a href="/profilecharity">
+                <% userlist.forEach(function(user){%>
+                <a href="/profileCharity">
                     <div class="feeds js-click-block" >
-                        <img src="/assets/Peace.jpeg" class = "pic">
-                        <span><b>Name:</b> Food co</span><br>
-                        <span><b>Location:</b> Carlton</span><br>
-                        <span><b>Description:</b> We are here to help all the homeless people to get some foods that sourced from cafe</span>
+                        <img src=<%= user.photo %> class = "pic">
+                        <span><b>Name:</b><%= user.name %></span><br>
+                        <span><b>Location:</b><%= user.address %></span><br>
+                        <span><b>Description:</b> <%= user.bio %></span>
                     </div>
                 </a>
-                    <div class="feeds js-click-block">
-                        <img src="/assets/bread.png" class = "pic">
-                        <span><b>Name:</b> Gift of bread</span><br>
-                        <span><b>Location:</b> Carlton</span><br>
-                        <span><b>Description:</b> We are here to help all the homeless people to get some foods that sourced from supply chain</span>
-                    </div>
-
+                <% });%>
             </div>
         </div>
     </middleleft>

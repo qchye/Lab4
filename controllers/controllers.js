@@ -1,5 +1,12 @@
 const mongoose = require('mongoose');
-const user = require("../models/userdb.js");
+mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
+    if(err){
+        console.log('Some problem with the connection' + err);
+    }else{
+        console.log('The Mongoose connection is ready');
+    }
+});
+var usermodel = require("../models/userdb.js");
 
 module.exports.fetchLanding =
     function(req, res){
@@ -8,14 +15,56 @@ module.exports.fetchLanding =
     };
 
 module.exports.fetchCafeHome =
-    function(req, res){
-        res.render("cafehome.ejs",
-            {});
+    function(req, res, next){
+        var newuserlist = [];
+        const searchresult = req.query.search;
+        usermodel.find({}, function(err, users) {
+            if (err) {
+                res.send(err);
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "charity") {
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            else{
+                users.forEach(function(user){
+                    if(user.type === "charity"){
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            return res.render("cafehome.ejs",
+                {userlist: newuserlist});
+            next();
+        });
     };
 module.exports.fetchCharityHome =
-    function(req, res){
-        res.render("charityhome.ejs",
-            {});
+    function(req, res, next){
+        var newuserlist = [];
+        const searchresult = req.query.search;
+        usermodel.find({}, function(err, users) {
+            if (err) {
+                res.send(err);
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "waster") {
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            else{
+                users.forEach(function(user){
+                    if(user.type === "waster"){
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            return res.render("charityhome.ejs",
+                {userlist: newuserlist});
+            next();
+    });
     };
 
 module.exports.fetchContact =
@@ -51,31 +100,20 @@ module.exports.fetchMessage =
             {});
     };
 
-//user profile
-
-module.exports.fetchUserProfile =
-    function(req, res){
-    user.findById(req.param.id, function(err, userfound){
-       if (err) throw err;
-
-
-        res.render("userprofile.ejs",
-            {user: userfound});
-    });
-    };
-
-
 module.exports.addUser =
     function (req, res){
-        var newcafe = new user({
-            "name": "sevenseeds",
+        var newUser = usermodel({
+            "username": "Chye",
+            "name": "The Caffeine Addict",
+            "type": "waster",
             "address": "Carlton",
-            "distance": "300km",
-            "rating": "4.0",
-            "photo": "no photo yet"
+            "email": "hahaha@hotmail.com",
+            "bio": "We are strong. We are kind. We are here to help homeless and poverty.",
+            "wasteproduced": "nothing",
+            "photo": "/assets/coffee.jpg",
         });
-        cafe.save(function (err){
+        newUser.save(function (err){
             if (err) return res.sendStatus(403);
             return res.end();
-        })
+        });
     };
