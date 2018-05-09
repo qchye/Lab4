@@ -90,14 +90,11 @@ module.exports.fetchMessage =
 module.exports.addUser =
     function (req, res){
         var newUser = usermodel({
-            "username": "Chye",
-            "name": "The Caffeine Addict",
-            "type": "waster",
-            "address": "Carlton",
-            "email": "hahaha@hotmail.com",
-            "bio": "We are strong. We are kind. We are here to help homeless and poverty.",
-            "wasteproduced": "nothing",
-            "photo": "/assets/coffee.jpg",
+            "emailAddress":req.body.email,
+            "companyName":req.body.companyName,
+            "username":req.body.username,
+            "phone":req.body.phone,
+            "password":req.body.password
         });
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
