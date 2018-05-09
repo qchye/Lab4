@@ -7,6 +7,9 @@ app.listen(PORT, function(){
     console.log('Express serving at port ${PORT}');
 });
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false}));
+
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 app.use('/',route);

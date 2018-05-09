@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema(
     {
     username: String,
+        password: String,
+        phone: String,
     name: String,
     type: String,
     location: String,
@@ -18,19 +20,5 @@ var userSchema = new Schema(
     }
 );
 
-/* Sign up information can get:
-Username
-Company Name
-email address
-address
-password
-type
- */
-/*
-Profile edit can get:
-Bio
-Waste provide/waste produce
-photo
- */
 var User = mongoose.model('user',userSchema);
 module.exports = User;

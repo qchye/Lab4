@@ -12,50 +12,31 @@
         <r1c2>
         </r1c2>
         <r1c3>
-            <button onclick="document.getElementById('id01').style.display='block'">Login</button>
-
-            <div id="id01" class="modal">
-             <span onclick="document.getElementById('id01').style.display='none'"
-                class="close" title="Close Modal">&times;</span>
                 <!-- Modal Content -->
-                <form class="modal-content animate" action="/action_page.php">
+                <form action="/login" method="POST">
                     <div class="container">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="username" required>
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" required>
 
                         <button type="submit">Login</button>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
-                    </div>
-
-                    <div class="container" style="background-color:#f1f1f1">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        <span class="psw">Forgot <a href="#">password?</a></span>
                     </div>
                 </form>
-            </div>
         </r1c3>
         <r1c4>
-            <button onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
-
-            <div id="id02" class="modal">
-             <span onclick="document.getElementById('id02').style.display='none'"
-                   class="close" title="Close Modal">&times;</span>
                 <!-- Modal Content -->
-                <form class="modal-content animate" action="/" method="POST">
+                <form action="/register" method="POST">
                     <div class="container">
                         <label for="email"><b>Email Address</b></label>
                         <input type="email" placeholder="Enter an Email Address" name="email" required>
-                        <label for="companyName"><b>Company Name</b></label>
-                        <input type="text" placeholder="Enter your Business' Name" name="companyName" required>
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter a Username" name="uname" required>
+                        <label for="name"><b>Company Name</b></label>
+                        <input type="text" placeholder="Enter your Business' Name" name="name" required>
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" placeholder="Enter a Username" name="username" required>
                         <label for="phone"><b>Phone Number</b></label>
-                        <input type="text" placeholder="Enter your Phone Number" name = phone" required>
+                        <input type="text" placeholder="Enter your Phone Number" name = "phone" required>
                         <label for="password"><b>Password</b></label>
                         <input type="password" placeholder="Enter Password" name="password" required>
                         <button type="submit">Sign Up!</button>
@@ -67,7 +48,6 @@
                         </label>
                     </div>
                 </form>
-            </div>
         </r1c4>
         <r1c5>
             <p><a href="/contactus" style="text-decoration: none">About Us</a></p>

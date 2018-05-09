@@ -4,7 +4,9 @@ const router = express.Router();
 const controllers = require('../controllers/controllers.js');
 
 router.get('/',controllers.fetchLanding);
-router.post('/', controllers.addUser);
+router.post('/register', controllers.addUser);
+
+router.post('/login', controllers.authenticateUser);
 router.get('/cafehome', controllers.fetchCafeHome);
 router.get('/charityhome', controllers.fetchCharityHome);
 router.get('/profilewaster', controllers.fetchProfileWaster);

@@ -6,6 +6,7 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
         console.log('The Mongoose connection is ready');
     }
 });
+
 var usermodel = require("../models/userdb.js");
 
 module.exports.fetchLanding =
@@ -89,15 +90,36 @@ module.exports.fetchMessage =
 * link to the homepage root*/
 module.exports.addUser =
     function (req, res){
+    console.log(req.body.email);
         var newUser = usermodel({
-            "emailAddress":req.body.email,
-            "companyName":req.body.companyName,
+            "email":req.body.email,
+            "name":req.body.name,
             "username":req.body.username,
             "phone":req.body.phone,
             "password":req.body.password
         });
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
-            return res.end();
+            return res.send(newUser);
+        });
+    };
+
+module.exports.authenticateUser =
+    function (req, res) {
+
+    var username = req.body.username;
+    var password = req.body.password;
+
+        usermodel.findOne({username: username, password: password}, function(err, user) {
+            if(err) {
+                console.log(err);
+                return res.status(500).send();
+            }
+
+            if (!user) {
+                return res.status(404).send();
+            }
+
+            return res.status(200).send();
         });
     };
