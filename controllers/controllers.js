@@ -15,40 +15,55 @@ module.exports.fetchLanding =
     };
 
 module.exports.fetchCafeHome =
-    function(req, res){
-        res.render("cafehome.ejs",
-            {});
-    };
-module.exports.fetchCharityHome =
     function(req, res, next){
-    /*
-        var newUser = usermodel({
-            "username": "Chye",
-            "name": "Sevenseeds ",
-            "type": "waster",
-            "address": "Carlton",
-            "email": "hahaha@hotmail.com",
-            "bio": "We are doing great job hahaha just come and visit our cafe.",
-            "wasteproduced": "nothing",
-            "photo": "/assets/cafe2.jpg",
-         });
-        newUser.save(function (err){
-            if (err) return res.sendStatus(403);
-            return res.end();
-        });*/
+        var newuserlist = [];
+        const searchresult = req.query.search;
         usermodel.find({}, function(err, users) {
             if (err) {
                 res.send(err);
-            }else if (users.length) {
-                return res.render("charityhome.ejs",
-                    {userlist: users});
-                next();
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "charity") {
+                        newuserlist.push(user);
+                    }
+                });
             }
             else{
-                return res.render("charityhome.ejs",
-                    {userlist: users});
-                next();
+                users.forEach(function(user){
+                    if(user.type === "charity"){
+                        newuserlist.push(user);
+                    }
+                });
             }
+            return res.render("cafehome.ejs",
+                {userlist: newuserlist});
+            next();
+        });
+    };
+module.exports.fetchCharityHome =
+    function(req, res, next){
+        var newuserlist = [];
+        const searchresult = req.query.search;
+        usermodel.find({}, function(err, users) {
+            if (err) {
+                res.send(err);
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "waster") {
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            else{
+                users.forEach(function(user){
+                    if(user.type === "waster"){
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            return res.render("charityhome.ejs",
+                {userlist: newuserlist});
+            next();
     });
     };
 

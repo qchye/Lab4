@@ -12,6 +12,5 @@ router.get('/charityuser', controllers.fetchCharityUser);
 router.get('/wasteruser', controllers.fetchWasterUser);
 router.get('/message', controllers.fetchMessage);
 router.get('/contactus', controllers.fetchContact);
-router.post('/', controllers.addUser);
 
 module.exports = router;

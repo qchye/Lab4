@@ -116,6 +116,7 @@ bottomright{
 .friendlist{
     grid-area: friendsss;
     border: double;
+    overflow: auto;
     border-width: 2px;
     border-radius: 5px;
     font-size: 24px;

@@ -1,7 +1,6 @@
 <!-- userlist is here-->
 <head>
     <link rel="stylesheet" href="/assets/home.css">
-    <script type="controller/javascript" src="../controllers/controllers.js"></script>
 </head>
 <body>
 <div class="background-image">
@@ -20,11 +19,9 @@
     <middleleft>
         <div class="allfeeds">
         <div class="section">
-            <form>
-                <input type="text" name="search" placeholder="Search for cafe">
-                <a href="/charityhome">
-                    <button class="button search">search</button>
-                </a>
+            <form action="/charityhome" method="get">
+                <input type="text" name='search' placeholder="Search for cafe">
+                <button class="button search">search</button>
             </form>
             <% userlist.forEach(function(user){%>
             <a href="/profilewaster">

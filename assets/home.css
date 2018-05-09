@@ -77,6 +77,8 @@ topright {
 }
 .allfeeds{
     grid-area: middleleft;
+    overflow: auto;
+    height: 600px;
     margin: 10px;
     margin-bottom: 2px;
     border: double;
