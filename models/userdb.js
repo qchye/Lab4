@@ -1,20 +1,26 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var userSchema = new Schema(
+var userSchema = mongoose.Schema(
     {
-        "username": String,
-        "name": String,
-        "type": String,
-        "address":String,
-        "email": String,
-        "bio": String,
-        "wasteproduced": String,
-        "wasteaccepted": String,
-        "photo": String,
-        "charitysupported": String,
-        "supportingwasterprovider": String,
+        username: String,
+        password: String,
+        phone: String,
+        name: String,
+        type: String,
+        address: {type: String, default: ""},
+        email: String,
+        bio: String,
+        wasteproduced: [String],
+        wasteaccepted: [String],
+        photo: {type: String, default: ""},
+        charitysupported: [String],
+        supportingwasteprovider: [String],
+        datecreated: {type: Date, default: Date.now},
+        isAdmin: {type: Boolean, default: false}
     }
 );
+
+var user = mongoose.model('user',userSchema);
+
 /* Sign up information can get:
 Username
 Company Name
@@ -29,5 +35,4 @@ Bio
 Waste provide/waste produce
 photo
  */
-var User = mongoose.model('user',userSchema);
-module.exports = User;
+module.exports = user;
