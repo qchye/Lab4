@@ -2,16 +2,18 @@ var mongoose = require('mongoose');
 var userSchema = mongoose.Schema(
     {
         username: String,
+        password: String,
+        phone: String,
         name: String,
         type: String,
-        location: String,
+        address: {type: String, default: ""},
         email: String,
         bio: String,
         wasteproduced: [String],
         wasteaccepted: [String],
-        photo: String,
+        photo: {type: String, default: ""},
         charitysupported: [String],
-        supportingwasterprovider: [String],
+        supportingwasteprovider: [String],
         datecreated: {type: Date, default: Date.now},
         isAdmin: {type: Boolean, default: false}
     }

@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -7,7 +8,6 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
     }
 });
 var usermodel = require("../models/userdb.js");
-
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
@@ -75,24 +75,44 @@ module.exports.fetchContact =
 
 module.exports.fetchProfileCharity =
     function(req, res){
-        res.render("ProfileCharity.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("ProfileCharity.ejs",
+                {user: userfound});
+        });
     };
 
 module.exports.fetchProfileWaster =
     function(req, res){
-        res.render("ProfileWaster.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("ProfileWaster.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchCharityUser =
     function(req, res){
-        res.render("charityuser.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("charityuser.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchWasterUser =
     function(req, res){
-        res.render("wasteruser.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("wasteruser.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchMessage =
     function(req, res){
@@ -100,20 +120,47 @@ module.exports.fetchMessage =
             {});
     };
 
+//user profile
+
+module.exports.fetchUserProfile =
+    function(req, res){
+
+        res.render("userprofile.ejs",
+            {user: usermodel.findOne({username: "Chye"})});
+
+    };
+
+
 module.exports.addUser =
     function (req, res){
         var newUser = usermodel({
-            "username": "Chye",
-            "name": "The Caffeine Addict",
-            "type": "waster",
-            "address": "Carlton",
-            "email": "hahaha@hotmail.com",
-            "bio": "We are strong. We are kind. We are here to help homeless and poverty.",
-            "wasteproduced": "nothing",
-            "photo": "/assets/coffee.jpg",
+            "email":req.body.email,
+            "name":req.body.name,
+            "username":req.body.username,
+            "phone":req.body.phone,
+            "password":req.body.password
         });
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
-            return res.end();
+            return res.status(200).send('Welcome to Food 4 Thought ' + req.body.username);
+        });
+    };
+
+module.exports.authenticateUser =
+    function (req, res) {
+
+        var username = req.body.username;
+        var password = req.body.password;
+
+        usermodel.findOne({username: username, password: password}, function(err, user) {
+            if(err) {
+                console.log(err);
+                return res.status(500).send();
+            }
+
+            if (!user) {
+                return res.status(404).send('Incorrent username and/or password');
+            }
+            return res.status(200).send('Welcome back, ' + username);
         });
     };

@@ -2,61 +2,54 @@
     <link rel="stylesheet" href="/assets/profile.css">
 </head>
 <body>
+
 <div class="background-image">
 </div>
 <div class="page">
     <div class="banner">
         <div class="homelink">
-            <a style="display: flex" href="/charityhome">
-            <img src="/assets/green_apple.png" width="51" height="65">
-            <div style="margin-left: 0.25em;margin-top: -0.25em">
-                <p>Food 4 Thought</p>
-            </div>
+            <a style="display: flex" href="/cafehome">
+                <img src="/assets/green_apple.png" width="51" height="65">
+                <div style="margin-left: 0.25em;margin-top: -0.25em">
+                    <p>Food 4 Thought</p>
+                </div>
             </a>
         </div>
         <div class="sidelink">
-            <p><a href="/charityuser">Profile</a></p>
+            <p><a href="/charityuser/:id">Profile</a></p>
             <p style="padding-left: 2em"><a href="/">Log out</a></p>
         </div>
     </div>
     <div class="profilecontent">
         <div class="primaryinfo">
             <div>
-                <img src="/assets/feng_coffee.jpg" width="136" height="120"
-                     style="border: 1px black solid;">
+                <img src="<%= user.photo %>" width="136" height="120"
+                     style="border: 1px black solid">
             </div>
             <div style="margin-left: 2em">
-                <p style="font-size: 30px;">The Caffeine Addicts</p>
-                <p>Waste Provider</p>
-                <p>Member Since :- 2018</p>
-                <p>Location :- Carlton</p>
+                <p style="font-size: 30px;"><%=user.name%></p>
+                <p><%=user.type%></p>
+                <p><%="Member Since :- " + { $dateToString: {format: "%Y", date: user.datecreated}}%></p>
+                <p><%="Location :- " + user.address%></p>
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
-                <button>Report</button>
-            </div>
-            <div style="padding-left: 1%;padding-top: 3em">
-                <a href="/message"><button>Contact</button></a>
+                <a href="/message"><button style="font-size: 1.25em;margin-left: 3em">Contact</button></a>
             </div>
         </div>
 
         <div class="secondaryinfo">
             <div>
                 <p style="padding-left: 7em;font-size: 24px">Bio</p>
-                <div class="box1" style="font-size: 0.9em">The Caffeine Addicts opened up its first cafe in 2018 in the
-                    heart of Melbourne CBD. Our mission is to serve the finest and most
-                    authentic coffee in all of Melbourne. With our line of highly-trained
-                    Baristas, we vow to provide the best quality of service.</div>
+                <div class="box1" style="font-size: 0.9em"><%=user.bio%></div>
             </div>
             <div style="padding-left: 4em">
                 <p style="padding-left: 2.2em;font-size: 24px">Waste Produced</p>
-                <div class="box3" style="font-size: 18px;">Bread products<br>Milk
-                    <br>Coffee Beans</div>
+                <div class="box3" style="font-size: 18px;"><%=user.wasteproduced%></div>
             </div>
         </div>
         <div class="tertiaryinfo">
             <p style="padding-left: 2em;font-size: 24px">Charities Supported</p>
-            <div class="box2">Mission Australia<br>Blue Care<br><a href="profilecharity"
-                >Gift of Bread</a></div>
+            <div class="box2"><%=user.charitysupported%></div>
             <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
         </div>
     </div>
