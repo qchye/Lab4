@@ -51,6 +51,20 @@ module.exports.fetchMessage =
             {});
     };
 
+//user profile
+
+module.exports.fetchUserProfile =
+    function(req, res){
+    user.findById(req.param.id, function(err, userfound){
+       if (err) throw err;
+
+
+        res.render("userprofile.ejs",
+            {user: userfound});
+    });
+    };
+
+
 module.exports.addUser =
     function (req, res){
         var newcafe = new user({

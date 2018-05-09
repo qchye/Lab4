@@ -20,4 +20,8 @@ router.get('/message', controllers.fetchMessage);
 router.get('/contactus', controllers.fetchContact);
 router.post('/', controllers.addUser);
 
+router.get('/userprofile/:id', controllers.fetchUserProfile);
+
+
+
 module.exports = router;
