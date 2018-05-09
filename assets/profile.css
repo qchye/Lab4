@@ -141,7 +141,7 @@ Slogan {
     height: 100px;
     border: 1.5px solid yellowgreen;
     border-radius: 0.25em;
-
+    overflow-y: auto;
 
 }
 
@@ -154,7 +154,7 @@ Slogan {
     line-height: 140%;
     border: 1.5px solid yellowgreen;
     border-radius: 0.25em;
-
+    overflow-y: auto;
 
 }
 
@@ -166,7 +166,7 @@ Slogan {
     line-height: 140%;
     border: 1.5px solid yellowgreen;
     border-radius: 0.25em;
-
+    overflow-y: auto;
 
 }
 
@@ -210,4 +210,6 @@ a:hover {
     color: #BDE13F;
 }
 
+@media (max-width: 930px) {
 
+}

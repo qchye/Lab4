@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -7,7 +8,6 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
     }
 });
 var usermodel = require("../models/userdb.js");
-
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",

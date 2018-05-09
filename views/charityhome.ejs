@@ -18,21 +18,21 @@
     </topright>
     <middleleft>
         <div class="allfeeds">
-        <div class="section">
-            <form action="/charityhome" method="get">
-                <input type="text" name='search' placeholder="Search for cafe">
-                <button class="button search">search</button>
-            </form>
-            <% userlist.forEach(function(user){%>
-            <a href="/profilewaster">
-                <div class="feeds js-click-block" >
-                    <img src=<%= user.photo %> class = "pic">
-                    <span><b>Name:</b><%= user.name %></span><br>
-                    <span><b>Location:</b><%= user.location %></span><br>
-                    <span><b>Description:</b> <%= user.bio %></span>
-                </div>
-            </a>
-            <% });%>
+            <div class="section">
+                <form action="/charityhome" method="get">
+                    <input type="text" name='search' placeholder="Search for cafe">
+                    <button class="button search">search</button>
+                </form>
+                <% userlist.forEach(function(user){%>
+                <a href="/profilewaster/<%=user.id%>">
+                    <div class="feeds js-click-block" >
+                        <img src="<%= user.photo %>" class = "pic">
+                        <span><b>Name:</b><%= user.name %></span><br>
+                        <span><b>Location:</b><%= user.address %></span><br>
+                        <span><b>Description:</b> <%= user.bio %></span>
+                    </div>
+                </a>
+                <% });%>
             </div>
         </div>
     </middleleft>
