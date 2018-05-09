@@ -130,6 +130,27 @@ module.exports.fetchMessage =
                 {messagebox: messagebox});
         });
     };
+module.exports.fetchMessageId =
+    function(req, res){
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                /*Dont have message yet*/
+                if(!messagebox){
+
+                }
+                messagebox.to.unshift(messagebox.to.splice(req.params.id, 1)[0]);
+                messagebox.save(function (err){
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
+    };
+
 module.exports.updateMessage =
     function(req, res){
         const newmessage = req.body.message;

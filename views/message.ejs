@@ -21,7 +21,7 @@
         <div class="friendlist" >
             <ul class="Conversation"></ul>
             <% messagebox.to.forEach(function(friend){%>
-            <a href="/message">
+            <a href="/message/<%=friend%>">
                 <li class="friend1"><%= friend%></li>
             </a>
             <% });%>

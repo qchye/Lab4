@@ -22,3 +22,4 @@ app.use('/wasteruser/:id',router);
 app.use('/message',router);
 app.use('/contactus',router);
 app.use('/userprofile', router);
+app.use('/message/:id', router);
