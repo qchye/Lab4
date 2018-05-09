@@ -13,11 +13,8 @@ router.get('/profilecharity/:id', controllers.fetchProfileCharity);
 router.get('/charityuser/:id', controllers.fetchCharityUser);
 router.get('/wasteruser/:id', controllers.fetchWasterUser);
 router.get('/message', controllers.fetchMessage);
+router.post('/message', controllers.updateMessage);
 router.get('/contactus', controllers.fetchContact);
 router.get('/userprofile', controllers.fetchUserProfile);
-
-router.get('/userprofile', controllers.fetchUserProfile);
-
-
 
 module.exports = router;

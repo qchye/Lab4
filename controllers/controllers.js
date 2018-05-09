@@ -8,6 +8,7 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
     }
 });
 var usermodel = require("../models/userdb.js");
+var messagemodel = require("../models/messagedb.js");
 var currentuser;
 module.exports.fetchLanding =
     function(req, res){
@@ -78,8 +79,6 @@ module.exports.fetchProfileCharity =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-
-
             res.render("ProfileCharity.ejs",
                 {user: userfound});
         });
@@ -117,10 +116,37 @@ module.exports.fetchWasterUser =
     };
 module.exports.fetchMessage =
     function(req, res){
-        res.render("message.ejs",
-            {});
-    };
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                /*Dont have message yet*/
+                if(!messagebox){
 
+                }
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
+    };
+module.exports.updateMessage =
+    function(req, res){
+        const newmessage = req.body.message;
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                messagebox.msg.push({content: newmessage, belonger:messagebox.from});
+                messagebox.save(function (err){
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
+    };
 //user profile
 
 module.exports.fetchUserProfile =
