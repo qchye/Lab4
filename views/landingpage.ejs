@@ -12,8 +12,16 @@
         <r1c2>
         </r1c2>
         <r1c3>
+            <!-- Button to open the modal login form -->
+            <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+            <!-- The Modal -->
+            <div id="id01" class="modal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                class="close" title="Close Modal">&times;</span>
+
                 <!-- Modal Content -->
-                <form action="/login" method="POST">
+                <form class="modal-content animate" action="/login" method="POST">
                     <div class="container">
                         <label for="username"><b>Username</b></label>
                         <input type="text" placeholder="Enter Username" name="username" required>
@@ -24,10 +32,19 @@
                         <button type="submit">Login</button>
                     </div>
                 </form>
+            </div>
         </r1c3>
         <r1c4>
+            <!-- Button to open the modal login form -->
+            <button onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
+
+            <!-- The Modal -->
+            <div id="id02" class="modal">
+            <span onclick="document.getElementById('id02').style.display='none'"
+                  class="close" title="Close Modal">&times;</span>
+
                 <!-- Modal Content -->
-                <form action="/register" method="POST">
+                <form action="/register" class="modal-content animate" method="POST">
                     <div class="container">
                         <label for="email"><b>Email Address</b></label>
                         <input type="email" placeholder="Enter an Email Address" name="email" required>
@@ -48,6 +65,7 @@
                         </label>
                     </div>
                 </form>
+            </div>
         </r1c4>
         <r1c5>
             <p><a href="/contactus" style="text-decoration: none">About Us</a></p>

@@ -90,7 +90,6 @@ module.exports.fetchMessage =
 * link to the homepage root*/
 module.exports.addUser =
     function (req, res){
-    console.log(req.body.email);
         var newUser = usermodel({
             "email":req.body.email,
             "name":req.body.name,
@@ -100,7 +99,7 @@ module.exports.addUser =
         });
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
-            return res.send(newUser);
+            return res.status(200).send('Welcome to Food 4 Thought ' + req.body.username);
         });
     };
 
@@ -117,9 +116,8 @@ module.exports.authenticateUser =
             }
 
             if (!user) {
-                return res.status(404).send();
+                return res.status(404).send('Incorrent username and/or password');
             }
-
-            return res.status(200).send();
+            return res.status(200).send('Welcome back, ' + username);
         });
     };
