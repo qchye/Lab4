@@ -1,4 +1,4 @@
-
+var currentuser;
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -140,6 +140,7 @@ module.exports.addUser =
             "phone":req.body.phone,
             "password":req.body.password
         });
+        currentuser = req.body.id;
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
             return res.status(200).send('Welcome to Food 4 Thought ' + req.body.username);
@@ -161,6 +162,7 @@ module.exports.authenticateUser =
             if (!user) {
                 return res.status(404).send('Incorrent username and/or password');
             }
+            currentuser = req.body.id;
             return res.status(200).send('Welcome back, ' + username);
         });
     };
