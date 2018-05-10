@@ -20,15 +20,33 @@
     <middleleft>
         <div class="friendlist" >
             <ul class="Conversation"></ul>
-            <a href="/message">
-                <li class="friend1">Feng's cafe</li>
+            <% messagebox.to.forEach(function(friend){%>
+            <a href="/message/<%=friend%>">
+                <li class="friend1"><%= friend%></li>
             </a>
-            <a href="/message">
-                <li class="friend2">Coffee and bread</li>
-            </a>
+            <% });%>
         </div>
         <div class="chatbox">
             <div class="chatlogs">
+                <% messagebox.msg.forEach(function(message){%>
+                <% if(message.belonger === messagebox.to[0]){ %>
+                <div class="chat friend">
+                    <div class="user-photo">
+                        <img src="/assets/coffee.jpg" class = "photo">
+                    </div>
+                    <p class="chat-message"><%= message.content%></p>
+                </div>
+                <% } %>
+                <% if(message.belonger === messagebox.from){ %>
+                <div class="chat self">
+                    <div class="user-photo">
+                        <img src="/assets/bread.png" class = "photo">
+                    </div>
+                    <p class="chat-message"><%= message.content%></p>
+                </div>
+                <% } %>
+                <% });%>
+                <!--
                 <div class="chat friend">
                     <div class="user-photo">
                         <img src="/assets/coffee.jpg" class = "photo">
@@ -66,13 +84,14 @@
                     <p class="chat-message">Thanks man! You are making the world better!</p>
                 </div>
             </div>
-
+            -->
             <div class="chat-form">
-                <textarea></textarea>
-                <a href="/message">
+                <form action="/message" method="post">
+                <textarea type="text" name="message"></textarea>
                 <button>Send</button>
-                </a>
+                </form>
             </div>
+        </div>
         </div>
 
 

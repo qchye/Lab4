@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -6,9 +7,9 @@ mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:1
         console.log('The Mongoose connection is ready');
     }
 });
-
 var usermodel = require("../models/userdb.js");
-
+var messagemodel = require("../models/messagedb.js");
+var currentuser;
 module.exports.fetchLanding =
     function(req, res){
         res.render("landingpage.ejs",
@@ -16,40 +17,55 @@ module.exports.fetchLanding =
     };
 
 module.exports.fetchCafeHome =
-    function(req, res){
-        res.render("cafehome.ejs",
-            {});
-    };
-module.exports.fetchCharityHome =
     function(req, res, next){
-    /*
-        var newUser = usermodel({
-            "username": "Chye",
-            "name": "Sevenseeds ",
-            "type": "waster",
-            "address": "Carlton",
-            "email": "hahaha@hotmail.com",
-            "bio": "We are doing great job hahaha just come and visit our cafe.",
-            "wasteproduced": "nothing",
-            "photo": "/assets/cafe2.jpg",
-         });
-        newUser.save(function (err){
-            if (err) return res.sendStatus(403);
-            return res.end();
-        });*/
+        var newuserlist = [];
+        const searchresult = req.query.search;
         usermodel.find({}, function(err, users) {
             if (err) {
                 res.send(err);
-            }else if (users.length) {
-                return res.render("charityhome.ejs",
-                    {userlist: users});
-                next();
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "charity") {
+                        newuserlist.push(user);
+                    }
+                });
             }
             else{
-                return res.render("charityhome.ejs",
-                    {userlist: users});
-                next();
+                users.forEach(function(user){
+                    if(user.type === "charity"){
+                        newuserlist.push(user);
+                    }
+                });
             }
+            return res.render("cafehome.ejs",
+                {userlist: newuserlist});
+            next();
+        });
+    };
+module.exports.fetchCharityHome =
+    function(req, res, next){
+        var newuserlist = [];
+        const searchresult = req.query.search;
+        usermodel.find({}, function(err, users) {
+            if (err) {
+                res.send(err);
+            }else if (searchresult) {
+                users.forEach(function(user){
+                    if (searchresult === user.name && user.type === "waster") {
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            else{
+                users.forEach(function(user){
+                    if(user.type === "waster"){
+                        newuserlist.push(user);
+                    }
+                });
+            }
+            return res.render("charityhome.ejs",
+                {userlist: newuserlist});
+            next();
     });
     };
 
@@ -61,33 +77,108 @@ module.exports.fetchContact =
 
 module.exports.fetchProfileCharity =
     function(req, res){
-        res.render("ProfileCharity.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+            res.render("ProfileCharity.ejs",
+                {user: userfound});
+        });
     };
 
 module.exports.fetchProfileWaster =
     function(req, res){
-        res.render("ProfileWaster.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("ProfileWaster.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchCharityUser =
     function(req, res){
-        res.render("charityuser.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("charityuser.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchWasterUser =
     function(req, res){
-        res.render("wasteruser.ejs",
-            {});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+
+
+            res.render("wasteruser.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchMessage =
     function(req, res){
-        res.render("message.ejs",
-            {});
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                /*Dont have message yet*/
+                if(!messagebox){
+
+                }
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
+    };
+module.exports.fetchMessageId =
+    function(req, res){
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                /*Dont have message yet*/
+                if(!messagebox){
+
+                }
+                messagebox.to.unshift(messagebox.to.splice(req.params.id, 1)[0]);
+                messagebox.save(function (err){
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
     };
 
-/* Adam use this part of codes to add user when press sign up, and change all the default info to req.params something,
-* link to the homepage root*/
+module.exports.updateMessage =
+    function(req, res){
+        const newmessage = req.body.message;
+        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+            if(err) {
+                console.log(err);
+            }
+            else{
+                messagebox.msg.push({content: newmessage, belonger:messagebox.from});
+                messagebox.save(function (err){
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            res.render("message.ejs",
+                {messagebox: messagebox});
+        });
+    };
+//user profile
+
+module.exports.fetchUserProfile =
+    function(req, res){
+
+        res.render("userprofile.ejs",
+            {user: usermodel.findOne({username: "Chye"})});
+
+    };
+
+
 module.exports.addUser =
     function (req, res){
         var newUser = usermodel({
@@ -106,8 +197,8 @@ module.exports.addUser =
 module.exports.authenticateUser =
     function (req, res) {
 
-    var username = req.body.username;
-    var password = req.body.password;
+        var username = req.body.username;
+        var password = req.body.password;
 
         usermodel.findOne({username: username, password: password}, function(err, user) {
             if(err) {
@@ -118,6 +209,7 @@ module.exports.authenticateUser =
             if (!user) {
                 return res.status(404).send('Incorrent username and/or password');
             }
+            currentuser = user;
             return res.status(200).send('Welcome back, ' + username);
         });
     };
