@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema(
         bio: String,
         wasteproduced: [String],
         wasteaccepted: [String],
-        photo: {type: String, default: ""},
+        photo: {type: String, default: "/assets/coffee.jpg"},
         charitysupported: [String],
         supportingwasteprovider: [String],
         datecreated: {type: Date, default: Date.now},
