@@ -35,7 +35,7 @@
                 <% if(message.belonger === messagebox.to[0]){ %>
                 <div class="chat friend">
                     <div class="user-photo">
-                        <img src="/assets/coffee.jpg" class = "photo">
+                        <img src=<%=friend.photo%> class = "photo">
                     </div>
                     <p class="chat-message"><%= message.content%></p>
                 </div>
@@ -43,14 +43,13 @@
                 <% if(message.belonger === messagebox.from){ %>
                 <div class="chat self">
                     <div class="user-photo">
-                        <img src="/assets/bread.png" class = "photo">
+                        <img src=<%=friend.photo%> class = "photo">
                     </div>
                     <p class="chat-message"><%= message.content%></p>
                 </div>
                 <% } %>
                 <% });%>
                 <% } %>
-
             <div class="chat-form">
                 <form action="/message" method="post">
                 <textarea type="text" name="message"></textarea>

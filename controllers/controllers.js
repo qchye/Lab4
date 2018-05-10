@@ -115,14 +115,14 @@ module.exports.fetchWasterUser =
         });
     };
 module.exports.fetchMessage =
-    function(req, res){
-        messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
-            if(err) {
+    function(req, res) {
+        messagemodel.findOne({from: currentuser.name}, function (err, messagebox) {
+            if (err) {
                 console.log(err);
             }
-            else{
+            else {
                 /*Dont have message yet*/
-                if(messagebox === null){
+                if (messagebox === null) {
                     var newMessage = messagemodel({
                         from: currentuser.name,
                         to: [],
@@ -130,15 +130,29 @@ module.exports.fetchMessage =
                             belonger: currentuser.name
                         }]
                     });
-                    newMessage.save(function (err){
+                    newMessage.save(function (err) {
                         if (err) return res.sendStatus(403);
                     });
                 }
             }
-            res.render("message.ejs",
-                {messagebox: messagebox, profileId: currentuser._id});
+            var currentfriend;
+            if (messagebox.to !== null) {
+                usermodel.findOne({name: messagebox.to[0]}, function (err, user) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(500).send();
+                    }
+                    currentfriend = user;
+                    return res.render("message.ejs",
+                        {messagebox: messagebox,user: currentuser,  profileId: currentuser._id, friend: currentfriend});
+                });
+            }
+            else{
+                return res.render("message.ejs",
+                    {messagebox: messagebox, user: currentuser, profileId: currentuser._id});
+            }
         });
-    };
+    }
 module.exports.fetchMessageId =
     function(req, res){
         messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
