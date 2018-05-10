@@ -8,7 +8,7 @@
 </div>
 <div class="home">
     <topmiddle>
-        <p><a href="/charityuser">Profile</a></p>
+        <p><a href="/charityuser/<%= profileId%>">Profile</a></p>
     </topmiddle>
     <topleft>
         <Header><a href="/charityhome">Food 4 Thought</a></Header>
@@ -20,14 +20,17 @@
     <middleleft>
         <div class="friendlist" >
             <ul class="Conversation"></ul>
+            <%if(messagebox.to !== null){%>
             <% messagebox.to.forEach(function(friend){%>
             <a href="/message/<%=friend%>">
                 <li class="friend1"><%= friend%></li>
             </a>
             <% });%>
+            <%}%>
         </div>
         <div class="chatbox">
             <div class="chatlogs">
+                <%if(messagebox.to !== null){%>
                 <% messagebox.msg.forEach(function(message){%>
                 <% if(message.belonger === messagebox.to[0]){ %>
                 <div class="chat friend">
@@ -46,45 +49,8 @@
                 </div>
                 <% } %>
                 <% });%>
-                <!--
-                <div class="chat friend">
-                    <div class="user-photo">
-                        <img src="/assets/coffee.jpg" class = "photo">
-                    </div>
-                    <p class="chat-message">What's up, Brother ..!!</p>
-                </div>
-                <div class="chat friend">
-                    <div class="user-photo">
-                        <img src="/assets/coffee.jpg" class = "photo">
-                    </div>
-                    <p class="chat-message">Hey man</p>
-                </div>
-                <div class="chat self">
-                    <div class="user-photo">
-                        <img src="/assets/bread.png" class = "photo">
-                    </div>
-                    <p class="chat-message">Hey brother</p>
-                </div>
-                <div class="chat self">
-                    <div class="user-photo">
-                        <img src="/assets/bread.png" class = "photo">
-                    </div>
-                    <p class="chat-message">How are you?</p>
-                </div>
-                <div class="chat friend">
-                    <div class="user-photo">
-                        <img src="/assets/coffee.jpg" class = "photo">
-                    </div>
-                    <p class="chat-message">I'm going to send food to you</p>
-                </div>
-                <div class="chat self">
-                    <div class="user-photo">
-                        <img src="/assets/bread.png" class = "photo">
-                    </div>
-                    <p class="chat-message">Thanks man! You are making the world better!</p>
-                </div>
-            </div>
-            -->
+                <% } %>
+
             <div class="chat-form">
                 <form action="/message" method="post">
                 <textarea type="text" name="message"></textarea>
@@ -92,9 +58,6 @@
                 </form>
             </div>
         </div>
-
-
-
     </middleleft>
     <bottomleft>
 

@@ -38,7 +38,7 @@ module.exports.fetchCafeHome =
                 });
             }
             return res.render("cafehome.ejs",
-                {userlist: newuserlist});
+                {userlist: newuserlist, profileId: currentuser._id});
             next();
         });
     };
@@ -64,7 +64,7 @@ module.exports.fetchCharityHome =
                 });
             }
             return res.render("charityhome.ejs",
-                {userlist: newuserlist});
+                {userlist: newuserlist, profileId: currentuser._id});
             next();
     });
     };
@@ -80,7 +80,7 @@ module.exports.fetchProfileCharity =
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
             res.render("ProfileCharity.ejs",
-                {user: userfound});
+                {user: userfound, profileId: currentuser._id});
         });
     };
 
@@ -91,7 +91,7 @@ module.exports.fetchProfileWaster =
 
 
             res.render("ProfileWaster.ejs",
-                {user: userfound});
+                {user: userfound, profileId: currentuser._id});
         });
     };
 module.exports.fetchCharityUser =
@@ -101,7 +101,7 @@ module.exports.fetchCharityUser =
 
 
             res.render("charityuser.ejs",
-                {user: userfound});
+                {user: userfound, profileId: currentuser._id});
         });
     };
 module.exports.fetchWasterUser =
@@ -111,7 +111,7 @@ module.exports.fetchWasterUser =
 
 
             res.render("wasteruser.ejs",
-                {user: userfound});
+                {user: userfound, profileId: currentuser._id});
         });
     };
 module.exports.fetchMessage =
@@ -122,12 +122,21 @@ module.exports.fetchMessage =
             }
             else{
                 /*Dont have message yet*/
-                if(!messagebox){
-
+                if(messagebox === null){
+                    var newMessage = messagemodel({
+                        from: currentuser.name,
+                        to: [],
+                        msg: [{
+                            belonger: currentuser.name
+                        }]
+                    });
+                    newMessage.save(function (err){
+                        if (err) return res.sendStatus(403);
+                    });
                 }
             }
             res.render("message.ejs",
-                {messagebox: messagebox});
+                {messagebox: messagebox, profileId: currentuser._id});
         });
     };
 module.exports.fetchMessageId =
@@ -137,17 +146,13 @@ module.exports.fetchMessageId =
                 console.log(err);
             }
             else{
-                /*Dont have message yet*/
-                if(!messagebox){
-
-                }
                 messagebox.to.unshift(messagebox.to.splice(req.params.id, 1)[0]);
                 messagebox.save(function (err){
                     if (err) return res.sendStatus(403);
                 });
             }
             res.render("message.ejs",
-                {messagebox: messagebox});
+                {messagebox: messagebox, profileId: currentuser._id});
         });
     };
 
@@ -165,7 +170,7 @@ module.exports.updateMessage =
                 });
             }
             res.render("message.ejs",
-                {messagebox: messagebox});
+                {messagebox: messagebox, profileId: currentuser.username});
         });
     };
 //user profile
@@ -185,12 +190,20 @@ module.exports.addUser =
             "email":req.body.email,
             "name":req.body.name,
             "username":req.body.username,
+            "address": req.body.address,
             "phone":req.body.phone,
-            "password":req.body.password
+            "password":req.body.password,
+            "type": req.body.type
         });
+        currentuser = newUser;
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
-            return res.status(200).send('Welcome to Food 4 Thought ' + req.body.username);
+            if(newUser.type == "waster"){
+                return res.redirect("/cafehome");
+            }
+            else{
+                return res.redirect("/charityhome");
+            }
         });
     };
 
@@ -210,6 +223,11 @@ module.exports.authenticateUser =
                 return res.status(404).send('Incorrent username and/or password');
             }
             currentuser = user;
-            return res.status(200).send('Welcome back, ' + username);
+            if(user.type == "waster"){
+                return res.redirect("/cafehome");
+            }
+            else{
+                return res.redirect("/charityhome");
+            }
         });
     };
