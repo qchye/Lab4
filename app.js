@@ -3,9 +3,11 @@ const app = express();
 const router = require("./routes/router.js");
 const PORT = process.env.PORT || 3000;
 
+
 app.listen(PORT, function(){
     console.log('Express serving at port ${PORT}');
 });
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');

@@ -16,6 +16,6 @@ router.get('/message', controllers.fetchMessage);
 router.get('/message/:id', controllers.fetchMessageId);
 router.post('/message', controllers.updateMessage);
 router.get('/contactus', controllers.fetchContact);
-router.get('/userprofile', controllers.fetchUserProfile);
+
 
 module.exports = router;
