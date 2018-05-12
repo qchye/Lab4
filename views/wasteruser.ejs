@@ -33,7 +33,12 @@
                 <p><%="Location :- " + user.address%></p>
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
+                <%if(mymessagebox.to.length === 0){%>
                 <a href="/message"><button style="font-size: 1.5em">Messages</button></a>
+                <%}%>
+                <%if(mymessagebox.to.length !== 0){%>
+                <a href="/message/<%=mymessagebox.to[0]%>"><button style="font-size: 1.5em">Messages</button></a>
+                <%}%>
             </div>
         </div>
 

@@ -104,16 +104,26 @@ module.exports.fetchCharityUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-            return res.render("charityuser.ejs",
-                {user: userfound});
+            messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+                if (err) throw err;
+                else{
+                    return res.render("charityuser.ejs",
+                        {user: userfound, mymessagebox: messagebox});
+                }
+                });
         });
     };
 module.exports.fetchWasterUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-            return res.render("wasteruser.ejs",
-                {user: userfound});
+            messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+                if (err) throw err;
+                else{
+                    return res.render("wasteruser.ejs",
+                        {user: userfound, mymessagebox: messagebox});
+                }
+            });
         });
     };
 module.exports.fetchMessage =
