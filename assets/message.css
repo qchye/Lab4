@@ -219,7 +219,7 @@ a:hover {
 
 .chat-form textarea {
     background-color: transparent;
-    width: 75%;
+    width: 250%;
     height: 50px;
     border: 2px solid #000;
     border-radius: 3px;

@@ -18,7 +18,7 @@
             <!-- The Modal -->
             <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display='none'"
-                class="close" title="Close Modal">&times;</span>
+                  class="close" title="Close Modal">&times;</span>
 
                 <!-- Modal Content -->
                 <form class="modal-content animate" action="/login" method="POST">
@@ -50,18 +50,20 @@
                         <input type="email" placeholder="Enter an Email Address" name="email" required>
                         <label for="name"><b>Company Name</b></label>
                         <input type="text" placeholder="Enter your Business' Name" name="name" required>
+                        <label for="name"><b>Location</b></label>
+                        <input type="text" placeholder="Enter your Business' Name" name="address" required>
                         <label for="username"><b>Username</b></label>
                         <input type="text" placeholder="Enter a Username" name="username" required>
-                        <label for="phone"><b>Phone Number</b></label>
-                        <input type="text" placeholder="Enter your Phone Number" name = "phone" required>
                         <label for="password"><b>Password</b></label>
                         <input type="password" placeholder="Enter Password" name="password" required>
+                        <label for="phone"><b>Phone Number</b></label>
+                        <input type="text" placeholder="Enter your Phone Number" name = "phone" required>
                         <button type="submit">Sign Up!</button>
                         <label>
-                            <input type="checkbox" name="charity"> Charity
+                            <input type="checkbox" name="type" value="charity"> Charity
                         </label>
                         <label>
-                            <input type="checkbox" name="wasteprovider"> Waste Provider
+                            <input type="checkbox" name="type" value="waster"> Waste Provider
                         </label>
                     </div>
                 </form>

@@ -9,6 +9,10 @@
             {id: user.id},
             {$addToSet: {supportingwasteprovider : user.name } }
         );
+        usermodel.update(
+            {id: currentuser.id},
+            {$addToSet: {charitysupported : user.name } }
+        );
         return "chudurbudur";
     }
 </script>
@@ -18,7 +22,7 @@
 <div class="page">
     <div class="banner">
         <div class="homelink">
-            <a style="display: flex" href="/charityhome">
+            <a style="display: flex" href="/cafehome">
                 <img src="/assets/green_apple.png" width="51" height="65">
                 <div style="margin-left: 0.25em;margin-top: -0.25em">
                     <p>Food 4 Thought</p>
@@ -26,7 +30,7 @@
             </a>
         </div>
         <div class="sidelink">
-            <p><a href="/wasteruser/:id">Profile</a></p>
+            <p><a href="/wasteruser/<%=profileId%>">Profile</a></p>
             <p style="padding-left: 2em"><a href="/">Log out</a></p>
         </div>
     </div>
@@ -57,12 +61,18 @@
             </div>
             <div style="padding-left: 4em">
                 <p style="padding-left: 2.2em;font-size: 24px">Waste Accepted</p>
-                <div class="box3" style="font-size: 18px;"><%=user.wasteaccepted%></div>
+                <div class="box3" style="font-size: 18px;"><% user.wasteaccepted.forEach(function(waste){%>
+                    <%=waste%><br>
+                    <%});%>
+                </div>
             </div>
         </div>
         <div class="tertiaryinfo">
             <p style="padding-left: 2em;font-size: 24px">List of Supporting Waste Providers</p>
-            <div class="box2"><%=user.supportingwasteprovider%></div>
+            <div class="box2"><% user.supportingwasteprovider.forEach(function(supporter){%>
+                <%=supporter%><br>
+                <%});%>
+            </div>
             <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
         </div>
     </div>

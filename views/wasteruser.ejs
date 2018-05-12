@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="sidelink">
-            <p><a href="/charityuser/:id">Profile</a></p>
+            <p><a href="/wasteruser/<%=user.id%>">Profile</a></p>
             <p style="padding-left: 2em"><a href="/">Log out</a></p>
         </div>
     </div>
@@ -27,10 +27,10 @@
                      style="border: 1px black solid">
             </div>
             <div style="margin-left: 2em">
-                <p style="font-size: 30px;"><%user.name%></p>
-                <p><%user.type%></p>
-                <p><%"Member Since :- " + { $year: user.datecreated}%></p>
-                <p><%"Location :- " + user.address%></p>
+                <p style="font-size: 30px;"><%=user.name%></p>
+                <p><%=user.type%></p>
+                <p><%="Member Since :- " + user.datecreated.toISOString().substr(0,4)%></p>
+                <p><%="Location :- " + user.address%></p>
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
                 <a href="/message"><button style="font-size: 1.5em">Messages</button></a>
@@ -40,16 +40,22 @@
         <div class="secondaryinfo">
             <div>
                 <p style="padding-left: 7em;font-size: 24px">Bio</p>
-                <div class="box1" style="font-size: 0.9em"><%user.bio%></div>
+                <div class="box1" style="font-size: 0.9em"><%=user.bio%></div>
             </div>
             <div style="padding-left: 4em">
                 <p style="padding-left: 2.2em;font-size: 24px">Waste Produced</p>
-                <div class="box3" style="font-size: 18px;"><%user.wasteproduced%></div>
+                <div class="box3" style="font-size: 18px;"><% user.wasteproduced.forEach(function(waste){%>
+                    <%=waste%><br>
+                    <%});%>
+                </div>
             </div>
         </div>
         <div class="tertiaryinfo">
             <p style="padding-left: 2em;font-size: 24px">Charities Supported</p>
-            <div class="box2"><%user.charitysupported%></div>
+            <div class="box2"><% user.charitysupported.forEach(function(charity){%>
+                <%=charity%><br>
+                <%});%>
+            </div>
             <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
         </div>
     </div>
