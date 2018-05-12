@@ -82,13 +82,12 @@ module.exports.fetchContact =
         res.render("contactus.ejs",
             {});
     };
-
 module.exports.fetchProfileCharity =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
             return res.render("ProfileCharity.ejs",
-                {user: userfound, currentuser:currentuser});
+                {user: userfound, profileId: currentuser.id});
         });
     };
 
@@ -98,17 +97,15 @@ module.exports.fetchProfileWaster =
             if (err) throw err;
 
             return res.render("ProfileWaster.ejs",
-                {user: userfound, currentuser:currentuser});
+                {user: userfound, profileId: currentuser.id});
         });
     };
 module.exports.fetchCharityUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-
-
             return res.render("charityuser.ejs",
-                {user: userfound, currentuser:currentuser});
+                {user: userfound});
         });
     };
 module.exports.fetchWasterUser =
@@ -116,7 +113,7 @@ module.exports.fetchWasterUser =
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
             return res.render("wasteruser.ejs",
-                {user: userfound, currentuser:currentuser});
+                {user: userfound});
         });
     };
 module.exports.fetchMessage =
@@ -149,7 +146,7 @@ module.exports.fetchMessageId =
                 }
                 messagemodel.findOne({from: req.params.id}, function(err, friendmessagebox) {
                     if (err) throw err;
-                    else {
+                    else if(req.params.id !== messagebox.from){
                         /*if friend is in send list, bring to front, if not, assign one to the front of sent list*/
                         if (friendmessagebox.to.includes(currentuser.name)) {
                             friendmessagebox.to.unshift(friendmessagebox.to.splice(friendmessagebox.to.indexOf(currentuser.name), 1)[0]);
@@ -224,15 +221,6 @@ module.exports.updateMessage =
             }
         });
     };
-//user profile
-
-module.exports.fetchUserProfile =
-    function(req, res){
-
-        res.render("userprofile.ejs",
-            {user: usermodel.findOne({username: "Chye"})});
-    };
-
 
 module.exports.addUser =
     function (req, res){

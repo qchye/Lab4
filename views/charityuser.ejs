@@ -2,6 +2,35 @@
     <link rel="stylesheet" href="/assets/profile.css">
 </head>
 <body>
+<script>
+    function makeEditable(element){
+        element.contentEditable = true;
+        element.style.zIndex = "10";
+    }
+    function saveEdits(element){
+        element.contentEditable = false;
+        if (element.id === "name"){
+            usermodel.update({id: currentuser.id},{name: element.textContent},{upsert:true});
+            currentuser.save(function (err) {
+                if (err) return res.sendStatus(403);
+            });
+        }
+        else if (element.id === "bio"){
+            console.log("wassup!");
+            usermodel.update({id: currentuser.id},{bio: element.innerHTML},{upsert:true});
+            currentuser.save(function (err) {
+                if (err) return res.sendStatus(403);
+            });
+        }
+        else if (element.id === "wasteaccepted"){
+            usermodel.update({id: currentuser.id},{wasteaccepted: element.innerHTML},{upsert:true});
+        }
+        else if (element.id === "location"){
+            usermodel.update({id: currentuser.id},{address: element.innerHTML},{upsert:true});
+        }
+    }
+</script>
+
 
 <div class="background-image">
 </div>
@@ -16,21 +45,23 @@
             </a>
         </div>
         <div class="sidelink">
-            <p><a href="/userprofile/:id">Profile</a></p>
+            <p><a href="/charityuser/<%=user.id%>">Profile</a></p>
             <p style="padding-left: 2em"><a href="/">Log out</a></p>
         </div>
     </div>
     <div class="profilecontent">
         <div class="primaryinfo">
             <div>
-                <img src=<%user.photo%> width="136" height="120"
+                <img src=<%=user.photo%> width="136" height="120"
                      style="border: 1px black solid">
             </div>
             <div style="margin-left: 2em">
-                <p style="font-size: 30px;"><%user.name%></p>
-                <p><%user.type%></p>
-                <p><%"Member Since :- " + { $year: user.datecreated}%></p>
-                <p><%"Location :- " + user.address%></p>
+                <p id = "name" onclick = "makeEditable(this)" onblur = "saveEdits(this)"
+                   style="font-size: 30px;"><%=user.name%></p>
+                <p><%=user.type%></p>
+                <p><%="Member Since :- " + user.datecreated.toISOString().substr(0,4)%></p>
+                <p id = "location" onclick = "makeEditable(this)" onblur = "saveEdits(this)" >
+                    <%="Location :- " + user.address%></p>
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
                 <a href="/message"><button style="font-size: 1.5em">Messages</button></a>
@@ -40,16 +71,25 @@
         <div class="secondaryinfo">
             <div>
                 <p style="padding-left: 7em;font-size: 24px">Bio</p>
-                <div class="box1" style="font-size: 0.9em"><%user.bio%></div>
+                <div id = "bio" onclick = "makeEditable(this)" onblur = "saveEdits(this)"
+                     class="box1" style="font-size: 0.9em"><%=user.bio%></div>
             </div>
             <div style="padding-left: 4em">
                 <p style="padding-left: 2.2em;font-size: 24px">Waste Accepted</p>
-                <div class="box3" style="font-size: 18px;"><%user.wasteaccepted%></div>
+                <div id = "wasteaccepted" onclick = "makeEditable(this)" onblur = "saveEdits(this)"
+                     class="box3" style="font-size: 18px;">
+                    <% user.wasteaccepted.forEach(function(waste){%>
+                    <%=waste%><br>
+                    <%});%>
+                </div>
             </div>
         </div>
         <div class="tertiaryinfo">
             <p style="padding-left: 2em;font-size: 24px">List of Supporting Waste Providers</p>
-            <div class="box2"><%user.supportingwasterprovider%></div>
+            <div class="box2"><% user.supportingwasteprovider.forEach(function(supporter){%>
+                <%=supporter%><br>
+                <%});%>
+            </div>
             <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
         </div>
     </div>

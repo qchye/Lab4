@@ -8,7 +8,12 @@
 </div>
 <div class="home">
     <topmiddle>
+        <%if(user.type === "charity"){%>
         <p><a href="/charityuser/<%= user.id%>">Profile</a></p>
+        <%}%>
+        <%if(user.type === "waster"){%>
+        <p><a href="/wasteruser/<%= user.id%>">Profile</a></p>
+        <%}%>
     </topmiddle>
     <topleft>
         <%if(user.type === "charity"){%>
