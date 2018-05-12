@@ -87,9 +87,7 @@ module.exports.fetchProfileCharity =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-
-
-            res.render("ProfileCharity.ejs",
+            return res.render("ProfileCharity.ejs",
                 {user: userfound, profileId: currentuser.id});
         });
     };
@@ -99,24 +97,26 @@ module.exports.fetchProfileWaster =
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
 
-
-            res.render("ProfileWaster.ejs",
+            return res.render("ProfileWaster.ejs",
                 {user: userfound, profileId: currentuser.id});
         });
     };
 module.exports.fetchCharityUser =
     function(req, res){
-        usermodel.findById(req.params.id, function(err,foundUser){
-            res.render("charityuser.ejs",
-                {user: foundUser});
-        });
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
 
+
+            return res.render("charityuser.ejs",
+                {user: userfound});
+        });
     };
 module.exports.fetchWasterUser =
     function(req, res){
-        usermodel.findById(req.params.id, function(err,foundUser) {
-            res.render("wasteruser.ejs",
-                {user: foundUser});
+        usermodel.findById(req.params.id, function(err, userfound){
+            if (err) throw err;
+            return res.render("wasteruser.ejs",
+                {user: userfound});
         });
     };
 module.exports.fetchMessage =
@@ -224,7 +224,14 @@ module.exports.updateMessage =
             }
         });
     };
+//user profile
 
+module.exports.fetchUserProfile =
+    function(req, res){
+
+        res.render("userprofile.ejs",
+            {user: usermodel.findOne({username: "Chye"})});
+    };
 
 
 module.exports.addUser =
@@ -282,3 +289,25 @@ module.exports.authenticateUser =
             }
         });
     };
+module.exports.saveEdits = function(element){
+    element.contentEditable = false;
+    if (element.id === "name"){
+        usermodel.update({id: currentuser.id},{ $set : {name: element.textContent}});
+        currentuser.save(function (err) {
+            if (err) return res.sendStatus(403);
+        });
+    }
+    else if (element.id === "bio"){
+        console.log("wassup!");
+        usermodel.update({id: currentuser.id},{ $set : {bio: element.innerHTML}});
+        currentuser.save(function (err) {
+            if (err) return res.sendStatus(403);
+        });
+    }
+    else if (element.id === "wasteaccepted"){
+        usermodel.update({id: currentuser.id},{ $set : {wasteaccepted: element.innerHTML}});
+    }
+    else if (element.id === "location"){
+        usermodel.update({id: currentuser.id},{ $set : {address: element.innerHTML}});
+    }
+}

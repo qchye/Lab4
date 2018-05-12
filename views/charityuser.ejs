@@ -3,32 +3,13 @@
 </head>
 <body>
 <script>
+    const controllers = require('../controllers/controllers.js');
+
     function makeEditable(element){
+        console.log("wassup!");
         element.contentEditable = true;
-        element.style.zIndex = "10";
     }
-    function saveEdits(element){
-        element.contentEditable = false;
-        if (element.id === "name"){
-            usermodel.update({id: currentuser.id},{name: element.textContent},{upsert:true});
-            currentuser.save(function (err) {
-                if (err) return res.sendStatus(403);
-            });
-        }
-        else if (element.id === "bio"){
-            console.log("wassup!");
-            usermodel.update({id: currentuser.id},{bio: element.innerHTML},{upsert:true});
-            currentuser.save(function (err) {
-                if (err) return res.sendStatus(403);
-            });
-        }
-        else if (element.id === "wasteaccepted"){
-            usermodel.update({id: currentuser.id},{wasteaccepted: element.innerHTML},{upsert:true});
-        }
-        else if (element.id === "location"){
-            usermodel.update({id: currentuser.id},{address: element.innerHTML},{upsert:true});
-        }
-    }
+
 </script>
 
 
