@@ -53,7 +53,7 @@
                 <% if((message.belonger === messagebox.from) && (message.sendto === friend.name)){ %>
                 <div class="chat self">
                     <div class="user-photo">
-                        <img src=<%=friend.photo%> class = "photo">
+                        <img src=<%=user.photo%> class = "photo">
                     </div>
                     <p class="chat-message"><%= message.content%></p>
                 </div>
