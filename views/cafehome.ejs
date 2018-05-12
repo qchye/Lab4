@@ -6,10 +6,10 @@
 </div>
 <div class="home">
     <topmiddle>
-        <p><a href="wasteruser/<%= profileId%>">Profile</a></p>
+        <p><a href="wasteruser/<%= currentuser.id%>">Profile</a></p>
     </topmiddle>
     <topleft>
-        <Header><a href="/cafehome" >Food 4 Thought</a></Header>
+        <Header><a href="/charityhome" >Food 4 Thought</a></Header>
         <Slogan>Turning Trash Into Treasure.</Slogan>
     </topleft>
     <topright>
@@ -36,9 +36,16 @@
         </div>
     </middleleft>
     <middlemiddle>
+        <%if(usermessage.to.length === 0){%>
         <a href="/message">
             <button class="button message">Message box</button>
         </a>
+        <%}%>
+        <%if(usermessage.to.length !== 0){%>
+        <a href="/message/<%=usermessage.to[0]%>">
+            <button class="button message">Message box</button>
+        </a>
+        <%}%>
     </middlemiddle>
     <middleright>
 

@@ -5,7 +5,8 @@ var messageSchema = mongoose.Schema(
         to: [String],
         msg: [{
             content: String,
-            belonger: String
+            belonger: String,
+            sendto: String
         }]
     }
 );
