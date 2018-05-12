@@ -37,8 +37,13 @@ module.exports.fetchCafeHome =
                     }
                 });
             }
-            return res.render("cafehome.ejs",
-                {userlist: newuserlist, currentuser:currentuser});
+            messagemodel.findOne({from: currentuser.name}, function(err, message){
+                if (err) throw err;
+                else{
+                    return res.render("cafehome.ejs",
+                        {userlist: newuserlist, currentuser: currentuser, usermessage: message});
+                }
+            });
         });
     };
 module.exports.fetchCharityHome =
@@ -62,8 +67,13 @@ module.exports.fetchCharityHome =
                     }
                 });
             }
-            return res.render("charityhome.ejs",
-                {userlist: newuserlist, currentuser: currentuser});
+            messagemodel.findOne({from: currentuser.name}, function(err, message){
+                if (err) throw err;
+                else{
+                    return res.render("charityhome.ejs",
+                        {userlist: newuserlist, currentuser: currentuser, usermessage: message});
+                }
+            });
       });
     };
 
@@ -77,8 +87,8 @@ module.exports.fetchProfileCharity =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-            res.render("ProfileCharity.ejs",
-                {user: userfound, profileId: currentuser._id});
+            return res.render("ProfileCharity.ejs",
+                {user: userfound, currentuser:currentuser});
         });
     };
 
@@ -87,8 +97,8 @@ module.exports.fetchProfileWaster =
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
 
-            res.render("ProfileWaster.ejs",
-                {user: userfound, profileId: currentuser._id});
+            return res.render("ProfileWaster.ejs",
+                {user: userfound, currentuser:currentuser});
         });
     };
 module.exports.fetchCharityUser =
@@ -97,24 +107,22 @@ module.exports.fetchCharityUser =
             if (err) throw err;
 
 
-            res.render("charityuser.ejs",
-                {user: userfound, profileId: currentuser._id});
+            return res.render("charityuser.ejs",
+                {user: userfound, currentuser:currentuser});
         });
     };
 module.exports.fetchWasterUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-            res.render("wasteruser.ejs",
-                {user: userfound, profileId: currentuser._id});
+            return res.render("wasteruser.ejs",
+                {user: userfound, currentuser:currentuser});
         });
     };
 module.exports.fetchMessage =
     function(req, res) {
         messagemodel.findOne({from: currentuser.name}, function (err, messagebox) {
-            if (err) {
-                console.log(err);
-            }
+            if (err) throw err;
             else {
                 return res.render("message.ejs",
                     {messagebox: messagebox, user: currentuser});
@@ -124,9 +132,7 @@ module.exports.fetchMessage =
 module.exports.fetchMessageId =
     function(req, res){
         messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
-            if(err) {
-                console.log(err);
-            }
+            if (err) throw err;
             else{
                 /*if friend is in send list, bring to front, if not, assign one to the front of sent list*/
                 if(messagebox.to.includes(req.params.id)){
@@ -136,11 +142,37 @@ module.exports.fetchMessageId =
                     });
                 }
                 else{
-                    message.to.unshift(req.params.id);
+                    messagebox.to.unshift(req.params.id);
+                    messagebox.save(function (err){
+                        if (err) return res.sendStatus(403);
+                    });
                 }
+                messagemodel.findOne({from: req.params.id}, function(err, friendmessagebox) {
+                    if (err) throw err;
+                    else {
+                        /*if friend is in send list, bring to front, if not, assign one to the front of sent list*/
+                        if (friendmessagebox.to.includes(currentuser.name)) {
+                            friendmessagebox.to.unshift(friendmessagebox.to.splice(friendmessagebox.to.indexOf(currentuser.name), 1)[0]);
+                            friendmessagebox.save(function (err) {
+                                if (err) return res.sendStatus(403);
+                            });
+                        }
+                        else {
+                            friendmessagebox.to.unshift(currentuser.name);
+                            friendmessagebox.save(function (err) {
+                                if (err) return res.sendStatus(403);
+                            });
+                        }
+                    }
+                });
+                usermodel.findOne({name: messagebox.to[0]}, function(err, myfriend) {
+                    if (err) throw err;
+                    else{
+                        return res.render("message.ejs",
+                            {messagebox: messagebox, user: currentuser, friend: myfriend});
+                    }
+                });
             }
-            return res.render("message.ejs",
-                {messagebox: messagebox, user:currentuser});
         });
     };
 
@@ -148,9 +180,7 @@ module.exports.updateMessage =
     function(req, res){
         const newmessage = req.body.message;
         messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
-            if(err) {
-                console.log(err);
-            }
+            if (err) throw err;
             else{
                 /*if no message send but send is pressed, for safety purpose*/
                 if(newmessage== ""){
@@ -164,32 +194,32 @@ module.exports.updateMessage =
                 }
                 /*create sent message for both user and friend*/
                 else{
-                    messagebox.msg.push({content: newmessage, belonger:messagebox.from});
-                    messagebox.save(function (err){
-                        if (err) return res.sendStatus(403);
-                    });
                     /*trying to send message to self*/
                     if(messagebox.to.length === 0){
                         messagebox.to.push(messagebox.from);
                     }
-                    else{
-                        messagemodel.findOne({from: messagebox.to[0]}, function(err, friend) {
-                            if(err) {
-                                console.log(err);
+                    messagemodel.findOne({from: messagebox.to[0]}, function(err, friend) {
+                        if (err) throw err;
+                        else{
+                            messagebox.msg.push({content: newmessage, belonger:messagebox.from, sendto: friend.from});
+                            messagebox.save(function (err){
+                                if (err) return res.sendStatus(403);
+                            });
+                            /*send to self message only save once*/
+                            if(!(friend.from === messagebox.from)){
+                                friend.msg.push({content: newmessage, belonger:messagebox.from, sendto: friend.from});
+                                friend.save(function (err){
+                                    if (err) return res.sendStatus(403);
+                                });
                             }
-                            else{
-                                if(!(friend.from === messagebox.from)){
-                                    friend.msg.push({content: newmessage, belonger:messagebox.from});
-                                    friend.save(function (err){
-                                        if (err) return res.sendStatus(403);
-                                    });
+                            usermodel.findOne({name: friend.from}, function(err, myfriend) {
+                                if (err) throw err;
+                                else{
+                                    return res.redirect("/message/"+myfriend.name);
                                 }
-                            }
-                            return res.render("message.ejs",
-                                {messagebox: messagebox, user: currentuser, friend: friend});
-                        });
-
-                    }
+                            });
+                        }
+                    });
                 }
             }
         });
@@ -201,7 +231,6 @@ module.exports.fetchUserProfile =
 
         res.render("userprofile.ejs",
             {user: usermodel.findOne({username: "Chye"})});
-
     };
 
 

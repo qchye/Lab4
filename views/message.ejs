@@ -8,10 +8,15 @@
 </div>
 <div class="home">
     <topmiddle>
-        <p><a href="/charityuser/<%= user._id%>">Profile</a></p>
+        <p><a href="/charityuser/<%= user.id%>">Profile</a></p>
     </topmiddle>
     <topleft>
+        <%if(user.type === "charity"){%>
         <Header><a href="/charityhome">Food 4 Thought</a></Header>
+        <%}%>
+        <%if(user.type === "waster"){%>
+        <Header><a href="/cafehome">Food 4 Thought</a></Header>
+        <%}%>
         <Slogan>Turning Trash Into Treasure.</Slogan>
     </topleft>
     <topright>
@@ -32,7 +37,7 @@
             <div class="chatlogs">
                 <%if(messagebox.to.length !== 0){%>
                 <% messagebox.msg.forEach(function(message){%>
-                <% if(message.belonger === messagebox.to[0]){ %>
+                <% if((message.belonger === friend.name) && (message.sendto === messagebox.from)){ %>
                 <div class="chat friend">
                     <div class="user-photo">
                         <img src=<%=friend.photo%> class = "photo">
@@ -40,7 +45,7 @@
                     <p class="chat-message"><%= message.content%></p>
                 </div>
                 <% } %>
-                <% if(message.belonger === messagebox.from){ %>
+                <% if((message.belonger === messagebox.from) && (message.sendto === friend.name)){ %>
                 <div class="chat self">
                     <div class="user-photo">
                         <img src=<%=friend.photo%> class = "photo">

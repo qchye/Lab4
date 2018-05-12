@@ -37,9 +37,16 @@
         </div>
     </middleleft>
     <middlemiddle>
+        <%if(usermessage.to.length === 0){%>
         <a href="/message">
             <button class="button message">Message box</button>
         </a>
+        <%}%>
+        <%if(usermessage.to.length !== 0){%>
+        <a href="/message/<%=usermessage.to[0]%>">
+            <button class="button message">Message box</button>
+        </a>
+        <%}%>
     </middlemiddle>
     <middleright>
 
