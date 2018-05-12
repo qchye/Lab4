@@ -38,8 +38,7 @@ module.exports.fetchCafeHome =
                 });
             }
             return res.render("cafehome.ejs",
-                {userlist: newuserlist, profileId: currentuser._id});
-            next();
+                {userlist: newuserlist, currentuser:currentuser});
         });
     };
 module.exports.fetchCharityHome =
@@ -64,9 +63,8 @@ module.exports.fetchCharityHome =
                 });
             }
             return res.render("charityhome.ejs",
-                {userlist: newuserlist, profileId: currentuser._id});
-            next();
-    });
+                {userlist: newuserlist, currentuser: currentuser});
+      });
     };
 
 module.exports.fetchContact =
@@ -89,7 +87,6 @@ module.exports.fetchProfileWaster =
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
 
-
             res.render("ProfileWaster.ejs",
                 {user: userfound, profileId: currentuser._id});
         });
@@ -108,8 +105,6 @@ module.exports.fetchWasterUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-
-
             res.render("wasteruser.ejs",
                 {user: userfound, profileId: currentuser._id});
         });
@@ -121,38 +116,11 @@ module.exports.fetchMessage =
                 console.log(err);
             }
             else {
-                /*Dont have message yet*/
-                if (messagebox === null) {
-                    var newMessage = messagemodel({
-                        from: currentuser.name,
-                        to: [],
-                        msg: [{
-                            belonger: currentuser.name
-                        }]
-                    });
-                    newMessage.save(function (err) {
-                        if (err) return res.sendStatus(403);
-                    });
-                }
-            }
-            var currentfriend;
-            if (messagebox.to !== null) {
-                usermodel.findOne({name: messagebox.to[0]}, function (err, user) {
-                    if (err) {
-                        console.log(err);
-                        return res.status(500).send();
-                    }
-                    currentfriend = user;
-                    return res.render("message.ejs",
-                        {messagebox: messagebox,user: currentuser,  profileId: currentuser._id, friend: currentfriend});
-                });
-            }
-            else{
                 return res.render("message.ejs",
-                    {messagebox: messagebox, user: currentuser, profileId: currentuser._id});
+                    {messagebox: messagebox, user: currentuser});
             }
         });
-    }
+    };
 module.exports.fetchMessageId =
     function(req, res){
         messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
@@ -160,13 +128,19 @@ module.exports.fetchMessageId =
                 console.log(err);
             }
             else{
-                messagebox.to.unshift(messagebox.to.splice(req.params.id, 1)[0]);
-                messagebox.save(function (err){
-                    if (err) return res.sendStatus(403);
-                });
+                /*if friend is in send list, bring to front, if not, assign one to the front of sent list*/
+                if(messagebox.to.includes(req.params.id)){
+                    messagebox.to.unshift(messagebox.to.splice(messagebox.to.indexOf(req.params.id), 1)[0]);
+                    messagebox.save(function (err){
+                        if (err) return res.sendStatus(403);
+                    });
+                }
+                else{
+                    message.to.unshift(req.params.id);
+                }
             }
-            res.render("message.ejs",
-                {messagebox: messagebox, profileId: currentuser._id});
+            return res.render("message.ejs",
+                {messagebox: messagebox, user:currentuser});
         });
     };
 
@@ -178,13 +152,46 @@ module.exports.updateMessage =
                 console.log(err);
             }
             else{
-                messagebox.msg.push({content: newmessage, belonger:messagebox.from});
-                messagebox.save(function (err){
-                    if (err) return res.sendStatus(403);
-                });
+                /*if no message send but send is pressed, for safety purpose*/
+                if(newmessage== ""){
+                    if(messagebox.to.length === 0){
+                        return res.redirect("/message");
+                    }
+                    else{
+                        var sendername = messagebox.to[0];
+                        return res.redirect("/message/"+sendername);
+                    }
+                }
+                /*create sent message for both user and friend*/
+                else{
+                    messagebox.msg.push({content: newmessage, belonger:messagebox.from});
+                    messagebox.save(function (err){
+                        if (err) return res.sendStatus(403);
+                    });
+                    /*trying to send message to self*/
+                    if(messagebox.to.length === 0){
+                        messagebox.to.push(messagebox.from);
+                    }
+                    else{
+                        messagemodel.findOne({from: messagebox.to[0]}, function(err, friend) {
+                            if(err) {
+                                console.log(err);
+                            }
+                            else{
+                                if(!(friend.from === messagebox.from)){
+                                    friend.msg.push({content: newmessage, belonger:messagebox.from});
+                                    friend.save(function (err){
+                                        if (err) return res.sendStatus(403);
+                                    });
+                                }
+                            }
+                            return res.render("message.ejs",
+                                {messagebox: messagebox, user: currentuser, friend: friend});
+                        });
+
+                    }
+                }
             }
-            res.render("message.ejs",
-                {messagebox: messagebox, profileId: currentuser.username});
         });
     };
 //user profile
@@ -209,7 +216,15 @@ module.exports.addUser =
             "password":req.body.password,
             "type": req.body.type
         });
+        var newMessagebox = messagemodel({
+            from: newUser.name,
+            to: [],
+            msg: [],
+        });
         currentuser = newUser;
+        newMessagebox.save(function(err){
+            if(err) return res.sendStatus(403);
+        });
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
             if(newUser.type == "waster"){

@@ -8,7 +8,7 @@
 </div>
 <div class="home">
     <topmiddle>
-        <p><a href="/charityuser/<%= profileId%>">Profile</a></p>
+        <p><a href="/charityuser/<%= user._id%>">Profile</a></p>
     </topmiddle>
     <topleft>
         <Header><a href="/charityhome">Food 4 Thought</a></Header>
@@ -20,7 +20,7 @@
     <middleleft>
         <div class="friendlist" >
             <ul class="Conversation"></ul>
-            <%if(messagebox.to !== null){%>
+            <%if(messagebox.to.length !== 0){%>
             <% messagebox.to.forEach(function(friend){%>
             <a href="/message/<%=friend%>">
                 <li class="friend1"><%= friend%></li>
@@ -30,7 +30,7 @@
         </div>
         <div class="chatbox">
             <div class="chatlogs">
-                <%if(messagebox.to !== null){%>
+                <%if(messagebox.to.length !== 0){%>
                 <% messagebox.msg.forEach(function(message){%>
                 <% if(message.belonger === messagebox.to[0]){ %>
                 <div class="chat friend">
