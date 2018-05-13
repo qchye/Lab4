@@ -6,14 +6,22 @@
 <script>
     function Support() {
         usermodel.update(
-            {id: user.id},
-            {$addToSet: {supportingwasteprovider : user.name } }
-        );
+            {username: user.username},
+            {$addToSet: {supportingwasteprovider : user.name }});
+        user.save(function (err) {
+            if (err) {
+                return res.sendStatus(403);
+            }
+        });
         usermodel.update(
-            {id: currentuser.id},
-            {$addToSet: {charitysupported : user.name } }
-        );
-        return "chudurbudur";
+            {username: currentuser.username},
+            {$addToSet: {charitysupported : user.name }});
+        currentuser.save(function (err) {
+            if (err) {
+                return res.sendStatus(403);
+            }
+        });
+        res.redirect("/profilecharity/"+user.id);
     }
 </script>
 
@@ -22,7 +30,9 @@
 <div class="page">
     <div class="banner">
         <div class="homelink">
+
             <a style="display: flex" href="/cafehome">
+
             <img src="/assets/green_apple.png" width="51" height="65">
             <div style="margin-left: 0.25em;margin-top: -0.25em">
                 <p>Food 4 Thought</p>
@@ -47,7 +57,7 @@
                 <p><%="Location :- " + user.address%></p>
             </div>
             <div style="padding-left: 20%;padding-top: 3em">
-                <button onclick="Support" style="margin-left: -2em;font-size: 1.25em">Support</button>
+                <button onclick="Support()" style="margin-left: -2em;font-size: 1.25em">Support</button>
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
                 <a href="/message/<%=user.name%>"><button style="margin-left: -1em;font-size: 1.25em">Contact</button></a>

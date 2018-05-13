@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -74,7 +73,7 @@ module.exports.fetchCharityHome =
                         {userlist: newuserlist, currentuser: currentuser, usermessage: message});
                 }
             });
-      });
+        });
     };
 
 module.exports.fetchContact =
@@ -82,7 +81,6 @@ module.exports.fetchContact =
         res.render("contactus.ejs",
             {});
     };
-
 module.exports.fetchProfileCharity =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
@@ -105,20 +103,34 @@ module.exports.fetchCharityUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-
-
-            return res.render("charityuser.ejs",
-                {user: userfound});
+            messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+                if (err) throw err;
+                else{
+                    return res.render("charityuser.ejs",
+                        {user: userfound, mymessagebox: messagebox});
+                }
+            });
         });
     };
 module.exports.fetchWasterUser =
     function(req, res){
         usermodel.findById(req.params.id, function(err, userfound){
             if (err) throw err;
-            return res.render("wasteruser.ejs",
-                {user: userfound});
+            messagemodel.findOne({from: currentuser.name}, function(err, messagebox) {
+                if (err) throw err;
+                else{
+                    return res.render("wasteruser.ejs",
+                        {user: userfound, mymessagebox: messagebox});
+                }
+            });
         });
     };
+
+module.exports.fetchEditProfile =
+    function(req, res){
+        res.render("editprofile.ejs",{currentuser: currentuser});
+    }
+
 module.exports.fetchMessage =
     function(req, res) {
         messagemodel.findOne({from: currentuser.name}, function (err, messagebox) {
@@ -149,7 +161,7 @@ module.exports.fetchMessageId =
                 }
                 messagemodel.findOne({from: req.params.id}, function(err, friendmessagebox) {
                     if (err) throw err;
-                    else {
+                    else if(req.params.id !== messagebox.from){
                         /*if friend is in send list, bring to front, if not, assign one to the front of sent list*/
                         if (friendmessagebox.to.includes(currentuser.name)) {
                             friendmessagebox.to.unshift(friendmessagebox.to.splice(friendmessagebox.to.indexOf(currentuser.name), 1)[0]);
@@ -224,15 +236,6 @@ module.exports.updateMessage =
             }
         });
     };
-//user profile
-
-module.exports.fetchUserProfile =
-    function(req, res){
-
-        res.render("userprofile.ejs",
-            {user: usermodel.findOne({username: "Chye"})});
-    };
-
 
 module.exports.addUser =
     function (req, res){
@@ -289,25 +292,82 @@ module.exports.authenticateUser =
             }
         });
     };
-module.exports.saveEdits = function(element){
-    element.contentEditable = false;
-    if (element.id === "name"){
-        usermodel.update({id: currentuser.id},{ $set : {name: element.textContent}});
-        currentuser.save(function (err) {
-            if (err) return res.sendStatus(403);
+
+module.exports.saveEdits =
+    function(req,res) {
+
+        usermodel.findById(currentuser.id,function(err,userfound) {
+
+            if (err) throw err;
+
+            if (req.body.name !== "") {
+                usermodel.update({username: userfound.username},{$set: {name: req.body.name}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) {
+                        return res.sendStatus(403);
+                    }
+                });
+            }
+            if (req.body.bio !== "") {
+                usermodel.update({username: userfound.username},{$set: {bio: req.body.bio}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            if (req.body.address !== "") {
+                usermodel.update({username: userfound.username}, {$set: {address: req.body.address}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            if (userfound.type === "charity") {
+                if (req.body.wasteaccepted !== "") {
+                    usermodel.update({username: userfound.username},
+                        {$addToSet: {wasteaccepted: req.body.wasteaccepted}}, function (err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    userfound.save(function (err) {
+                        if (err) return res.sendStatus(403);
+                    });
+                }
+            }
+
+            if (userfound.type === "waster") {
+                if (req.body.wasteproduced !== "") {
+                    usermodel.update({username: userfound.username},
+                        {$addToSet: {wasteproduced: req.body.wasteproduced}}, function (err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    userfound.save(function (err) {
+                        if (err) return res.sendStatus(403);
+                    });
+                }
+            }
+            if (userfound.type === "waster") {
+                return res.redirect("/wasteruser/" + userfound.id);
+            }
+            else {
+                return res.redirect("/charityuser/" + userfound.id);
+            }
+
         });
-    }
-    else if (element.id === "bio"){
-        console.log("wassup!");
-        usermodel.update({id: currentuser.id},{ $set : {bio: element.innerHTML}});
-        currentuser.save(function (err) {
-            if (err) return res.sendStatus(403);
-        });
-    }
-    else if (element.id === "wasteaccepted"){
-        usermodel.update({id: currentuser.id},{ $set : {wasteaccepted: element.innerHTML}});
-    }
-    else if (element.id === "location"){
-        usermodel.update({id: currentuser.id},{ $set : {address: element.innerHTML}});
-    }
+
 }
+
+
