@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     grid-template-rows: 10% 60% auto;
-
     grid-template-areas:
         "top middle bottom"
 
@@ -11,20 +10,15 @@
 .top{
     grid-area: top;
     display:grid;
-    grid-template-columns: 20% 50% 10% 10% 10%;
+    grid-template-columns: 30% 40% 10% 10% 10%;
     grid-template-areas: "r1c1 r1c2 r1c3 r1c4 r1c5"
 }
 
 .middle{
     grid-area: middle;
-    font-size: 30px;
-    font-weight: lighter;
-    margin-top: 1em;
-    margin-left: 5em;
-    padding-top: 30px;
-    padding-left: 8em;
-    padding-right: 8em;
-
+    font-size: 24px;
+    padding-left: 30%;
+    padding-right: 20%
 }
 .bottom{
     grid-area: bottom;
@@ -67,13 +61,54 @@ Slogan {
 
 r1c2{
     grid-area: r1c2;
-
 }
 
-r1c3 {
-    grid-area: r1c3;
-    text-align: right;
-    font-size: 16px;
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    padding-top: 6px;
+    text-align: center;
+}
+
+/* Avatar image */
+img.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 12px;
 }
 
 /* The Modal (background) */
@@ -83,8 +118,8 @@ r1c3 {
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    height: 100%;
+    width: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -97,8 +132,7 @@ r1c3 {
     background-color: #fefefe;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
+    width: 40%; /* Could be more or less, depending on screen size */}
 
 /* The Close Button */
 .close {
@@ -114,7 +148,7 @@ r1c3 {
 /* Close button on hover */
 .close:hover,
 .close:focus {
-    color: red;
+    color: #BDE13F;
     cursor: pointer;
 }
 
@@ -134,49 +168,8 @@ r1c3 {
     to {transform: scale(1)}
 }
 
-r1c4 {
-    grid-area: r1c4;
-    text-align: right;
-    padding-right: 10px;
-    font-size: 16px;
-
-}
-
-r1c5 {
-    grid-area: r1c5;
-    text-align: right;
-    padding-right: 10px;
-    font-size: 16px;
-}
-
-
-#searchBar {
-    width: 100%; /* Full-width */
-    font-size: 26px; /* Increase font-size */
-    padding: 20px 20px 20px 20px; /* Add some padding */
-    border: 2px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
-    margin-top: 42px;
-    border-color: white;
-    background: none;
-    color: white;
-}
-
- ::placeholder {
-     color: white;
-     opacity: 0.75;
-     font-style: italic;
- }
-
-
 body{
     margin:0px;
-}
-
-/* This gets rid of an ugly blue line around the marin when you click on the search bar */
-*:focus {
-    outline: 0;
-    outline: none;
 }
 
 a {
@@ -187,8 +180,11 @@ a {
     -ms-transition: color 0.2s ease-out;
     transition: color 0.2s ease-out;
     text-decoration: none;
+    padding-left: 70px;
+    font-size: 18px;
 }
 
 a:hover {
     color: #BDE13F;
+    cursor: pointer;
 }

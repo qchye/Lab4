@@ -12,10 +12,65 @@
         <r1c2>
         </r1c2>
         <r1c3>
-            <p><a href="/charityhome">Log In</a></p>
+            <!-- Button to open the modal login form -->
+            <p></p><a onclick="document.getElementById('id01').style.display='block'">Login</a></p>
+
+            <!-- The Modal -->
+            <div id="id01" class="modal">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="close" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form class="modal-content animate" action="/login" method="POST">
+                    <div class="container">
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="username" required>
+
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" required>
+
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
         </r1c3>
         <r1c4>
-            <p>Sign Up</p>
+            <!-- Button to open the modal login form -->
+            <p><a onclick="document.getElementById('id02').style.display='block'">Sign Up</a></p>
+
+            <!-- The Modal -->
+            <div id="id02" class="modal">
+            <span onclick="document.getElementById('id02').style.display='none'"
+                  class="close" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form action="/register" class="modal-content animate" method="POST">
+                    <div class="imgcontainer">
+                        <img src="assets/default_avatar.png" alt="Avatar" class="avatar">
+                    </div>
+                    <div class="container">
+                        <label for="email"><b>Email Address</b></label>
+                        <input type="email" placeholder="Enter an Email Address" name="email" required>
+                        <label for="name"><b>Company Name</b></label>
+                        <input type="text" placeholder="Enter your Business' Name" name="name" required>
+                        <label for="name"><b>Location</b></label>
+                        <input type="text" placeholder="Enter your Business' Name" name="address" required>
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" placeholder="Enter a Username" name="username" required>
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" required>
+                        <label for="phone"><b>Phone Number</b></label>
+                        <input type="text" placeholder="Enter your Phone Number" name = "phone" required>
+                        <label>
+                            <input type="checkbox" name="type" value="charity"> Charity
+                        </label>
+                        <label>
+                            <input type="checkbox" name="type" value="waster"> Waste Provider
+                        </label>
+                        <button type="submit">Sign Up!</button>
+                    </div>
+                </form>
+            </div>
         </r1c4>
         <r1c5>
             <p><a href="/" style="text-decoration: none">Home</a></p>
