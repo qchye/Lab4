@@ -9,8 +9,18 @@
         <p><a href="wasteruser/<%= currentuser.id%>">Profile</a></p>
     </topmiddle>
     <topleft>
-        <Header><a href="/charityhome" >Food 4 Thought</a></Header>
+    <leftleft>
+        <Header><a href="/cafehome" >Food 4 Thought</a></Header>
         <Slogan>Turning Trash Into Treasure.</Slogan>
+    </leftleft>
+    <leftright>
+    <%if(usermessage.to.length === 0){%>
+        <a href="/message">Message</a>
+    <%}%>
+    <%if(usermessage.to.length !== 0){%>
+        <a href="/message/<%=usermessage.to[0]%>">Message</a>
+    <%}%>
+    </leftright>
     </topleft>
     <topright>
         <p><a href="/">Log out</a></p>
@@ -26,40 +36,17 @@
                 <a href="/profilecharity/<%=user.id%>">
                     <div class="feeds js-click-block" >
                         <img src="<%= user.photo %>" class = "pic">
-                        <span><b>Name:</b><%= user.name %></span><br>
-                        <span><b>Location:</b><%= user.address %></span><br>
-                        <span><b>Description:</b> <%= user.bio %></span>
+                        <span><b>Name: </b><%= user.name %></span><br>
+                        <span><b>Location: </b><%= user.address %></span><br>
+                        <span><b>Description: </b> <%= user.bio %></span>
                     </div>
                 </a>
                 <% });%>
             </div>
         </div>
     </middleleft>
-    <middlemiddle>
-        <%if(usermessage.to.length === 0){%>
-        <a href="/message">
-            <button class="button message">Message box</button>
-        </a>
-        <%}%>
-        <%if(usermessage.to.length !== 0){%>
-        <a href="/message/<%=usermessage.to[0]%>">
-            <button class="button message">Message box</button>
-        </a>
-        <%}%>
-    </middlemiddle>
-    <middleright>
-
-    </middleright>
-    <bottomleft>
-
-    </bottomleft>
-    <bottommiddle>
-
-    </bottommiddle>
     <bottomright>
         Powered by the Caffeine Addicts!
     </bottomright>
 </div>
-
-
 </body>

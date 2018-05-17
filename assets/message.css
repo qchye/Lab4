@@ -42,7 +42,7 @@ body{
 
     grid-template-areas:
             "topleft topmiddle topright"
-            "middleleft middlemiddle middleright"
+            "middleleft middleleft middleright"
             "bottomleft bottommiddle bottomright";
 }
 topleft {
@@ -79,16 +79,9 @@ middleleft {
     margin-bottom: 2px;
     padding: 18px 10px;
     display: grid;
-    grid-template-columns: 35% 75%;
+    grid-template-columns: 30% 70%;
     grid-template-areas:
             "friendsss chatsss";
-}
-
-middlemiddle{
-    grid-area: middlemiddle;
-    margin: 10px;
-    font-size: 2em;
-    color: white;
 }
 
 bottomleft{
@@ -212,22 +205,16 @@ a:hover {
     order: -1;
 }
 
-.chat-form {
-    display: flex;
-    align-items: flex-start;
-}
-
 .chat-form textarea {
     background-color: transparent;
-    width: 250%;
+    width: 92%;
     height: 50px;
     border: 2px solid #000;
     border-radius: 3px;
-    resize: none;
     padding: 10px;
     font-size: 18px;
     color: #333;
-    margin-left:4px;
+    margin: 4px;
 }
 
 .chat-form textarea:focus {

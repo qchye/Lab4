@@ -42,7 +42,7 @@
             <div class="chatlogs">
                 <%if(messagebox.to.length !== 0){%>
                 <% messagebox.msg.forEach(function(message){%>
-                <% if((message.belonger === friend.name) && (message.sendto === messagebox.from)){ %>
+                <% if((message.belonger === friend.name) && (message.sendto === messagebox.from) && (message.belonger !== messagebox.from)){ %>
                 <div class="chat friend">
                     <div class="user-photo">
                         <img class = "photo" src=<%=friend.photo%>>
@@ -60,12 +60,13 @@
                 <% } %>
                 <% });%>
                 <% } %>
-                <div class="chat-form">
-                    <form action="/message" method="post">
-                        <textarea type="text" name="message"></textarea>
-                        <button>Send</button>
-                    </form>
-                </div>
+
+            </div>
+            <div class="chat-form">
+                <form action="/message" method="post">
+                    <textarea type="text" name="message"></textarea>
+                    <button>Send</button>
+                </form>
             </div>
         </div>
     </middleleft>

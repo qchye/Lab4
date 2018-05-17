@@ -19,7 +19,7 @@ Slogan {
 
     grid-template-areas:
         "topleft topmiddle topright"
-        "middleleft middlemiddle middleright"
+        "middleleft middleleft middleright"
         "bottomleft bottommiddle bottomright";
 }
 .background-image {
@@ -45,9 +45,15 @@ body{
     margin: 0px;
     color: white;
 }
-
-topleft {
+topleft{
     grid-area: topleft;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    grid-template-areas:
+            "leftleft leftright";
+}
+leftleft {
+    grid-area: leftleft;
     background-image: url('green_apple.png');
     background-size: 50px 68px;
     background-repeat: no-repeat;
@@ -58,6 +64,14 @@ topleft {
     padding-left: 90px;
     padding-top: 10px;
     opacity: 1;
+
+}
+leftright{
+    position: center;
+    grid-area: leftright;
+    padding-top: 31px;
+    font-size: 2em;
+    color: white;
 }
 
 
@@ -75,6 +89,9 @@ topright {
     font-size: 2em;
     color: white;
 }
+middleleft{
+    grid-area: middleleft;
+}
 .allfeeds{
     grid-area: middleleft;
     overflow: auto;
@@ -88,8 +105,8 @@ topright {
     padding: 18px 10px;
 }
 input[type=text] {
+    margin: 6px;
     width: 70%;
-    font-family: joanneshandwriting;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 10px;
@@ -111,32 +128,9 @@ input[type=text] {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-family: joanneshandwriting;
     font-size: 22px;
     margin: 4px 2px;
     cursor: pointer;
-}
-.message {
-    background-color: transparent;
-    border: solid;
-    border: 1.5px solid yellowgreen;
-    border-width: 1px;
-    border-radius: 10px;
-    color: white;
-    padding: 2px 4px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 22px;
-    font-family: joanneshandwriting;
-    margin: 20px 2px;
-    cursor: pointer;
-}
-middlemiddle{
-    grid-area: middlemiddle;
-    margin: 10px;
-    font-size: 2em;
-    color: white;
 }
 
 bottomleft{
@@ -153,14 +147,16 @@ bottomright{
     color: white;
 }
 .feeds{
-    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.9);
     margin: 10px;
     border: groove;
     border-color: white;
     border-width: 1px;
-    padding: 2px 2px;
+    padding: 10px 10px;
     width: 95%;
     height: 300px;
+    overflow: auto;
 }
 .pic{
     margin: 6px;
@@ -170,7 +166,8 @@ bottomright{
     height: 12em;
 }
 .feeds span{
-    font-size: 36px;
+    padding: 2px 2px;
+    font-size: 30px;
 }
 
 a {
@@ -195,10 +192,6 @@ a:hover {
     .feeds span{
         font-size: 22px;
     }
-    .message{
-        font-size: 18px;
-        margin: 10px 1px;
-    }
     .pic{
         width: 10em;
         height: 8em;
@@ -213,8 +206,16 @@ a:hover {
         background-image: none;
     }
     topleft{
+        grid-template-columns: 80% 20%;
+    }
+    leftleft{
+        padding: 10px 60px;
         font-size: 1em;
         background-size: 30px 48px;
+    }
+    leftright{
+        padding-top: 16px;
+        font-size: 1em;
     }
     Header{
         font-size: 18px;
@@ -232,11 +233,6 @@ a:hover {
 @media (max-width: 440px){
     input[type=text]{
         background-image: none;
-    }
-    .message {
-        margin: 0px;
-        font-size: 14px;
-        padding: 2px 2px;
     }
     .feeds{
         height:350px;
