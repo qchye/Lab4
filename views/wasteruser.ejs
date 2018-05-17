@@ -8,7 +8,7 @@
 <div class="page">
     <div class="banner">
         <div class="homelink">
-                <a style="display: flex" href="/cafehome">
+            <a style="display: flex" href="/cafehome">
             <img src="/assets/green_apple.png" width="51" height="65">
             <div style="margin-left: 0.25em;margin-top: -0.25em">
                 <p>Food 4 Thought</p>
@@ -23,7 +23,7 @@
     <div class="profilecontent">
         <div class="primaryinfo">
             <div>
-                <img src="/assets/feng_coffee.jpg" width="136" height="120"
+                <img src=<%=user.photo%> width="136" height="120"
                      style="border: 1px black solid">
             </div>
             <div style="margin-left: 2em">
@@ -34,11 +34,13 @@
             </div>
             <div style="padding-left: 5%;padding-top: 3em">
                 <%if(mymessagebox.to.length === 0){%>
-                <a href="/message"><button style="font-size: 1.5em">Messages</button></a>
+                <a href="/message"><button style="font-size: 1em">Messages</button></a>
                 <%}%>
                 <%if(mymessagebox.to.length !== 0){%>
-                <a href="/message/<%=mymessagebox.to[0]%>"><button style="font-size: 1.5em">Messages</button></a>
+                <a href="/message/<%=mymessagebox.to[0]%>"><button style="font-size: 1em">Messages</button></a>
                 <%}%>
+                <a href="/editprofile%>"><button style="margin-left: 1em;font-size: 1em">Edit Profile
+                    </button></a>
             </div>
         </div>
 

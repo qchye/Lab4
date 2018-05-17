@@ -1,0 +1,66 @@
+<head>
+    <link rel="stylesheet" href="/assets/profile.css">
+</head>
+<body>
+<div class="background-image">
+</div>
+<div class="page">
+    <div class="banner">
+        <div class="homelink">
+            <%if (currentuser.type === "waster") {%>
+            <a style="display: flex" href="/cafehome">
+                <img src="/assets/green_apple.png" width="51" height="65">
+                <div style="margin-left: 0.25em;margin-top: -0.25em">
+                    <p>Food 4 Thought</p>
+                </div>
+            </a>
+            <%}%>
+            <%if (currentuser.type === "charity") {%>
+            <a style="display: flex" href="/charityhome">
+                <img src="/assets/green_apple.png" width="51" height="65">
+                <div style="margin-left: 0.25em;margin-top: -0.25em">
+                    <p>Food 4 Thought</p>
+                </div>
+            </a>
+            <%}%>
+        </div>
+        <div class="sidelink">
+            <%if (currentuser.type === "waster") {%>
+            <p><a href="/wasteruser/<%=currentuser.id%>">Profile</a></p>
+            <%}%>
+            <%if (currentuser.type === "charity") {%>
+            <p><a href="/charityuser/<%=currentuser.id%>">Profile</a></p>
+            <%}%>
+            <p style="padding-left: 2em"><a href="/">Log out</a></p>
+        </div>
+    </div>
+    <div style="margin-left: auto;margin-right: auto">Type comma separated values for waste input</div>
+    <div class="profilecontent">
+        <form action="/edit" method="POST">
+            <div style="padding-left: 2em;padding-top: 2em">
+
+                <p>Name <input type="text" placeholder="<%=currentuser.name%>" name="name">
+                </p>
+                <p>Bio <textarea type="text" placeholder="<%=currentuser.bio%>" name="bio"></textarea>
+                </p>
+                <p>Location <input type="text" placeholder="<%=currentuser.address%>" name="address">
+                </p>
+                <%if (currentuser.type === "charity") {%>
+                <p>Waste Accepted <input type="text" placeholder="<%=currentuser.wasteaccepted%>" name="wasteaccepted">
+                </p>
+                <%}%>
+                <%if (currentuser.type === "waster") {%>
+                <p>Waste Produced <input type="text" placeholder="<%=currentuser.wasteproduced%>" name="wasteproduced">
+                </p>
+                <%}%>
+
+                <button type="submit">Done</button>
+
+            </div>
+
+
+        </form>
+    </div>
+    <div class="bottompart">Powered by The Caffeine Addicts!</div>
+</div>
+</body>

@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://caffeineaddict:ineedcaffeine2018@ds117010.mlab.com:17010/caffeineaddict", function(err, db){
     if(err){
@@ -74,7 +73,7 @@ module.exports.fetchCharityHome =
                         {userlist: newuserlist, currentuser: currentuser, usermessage: message});
                 }
             });
-      });
+        });
     };
 
 module.exports.fetchContact =
@@ -110,7 +109,7 @@ module.exports.fetchCharityUser =
                     return res.render("charityuser.ejs",
                         {user: userfound, mymessagebox: messagebox});
                 }
-                });
+            });
         });
     };
 module.exports.fetchWasterUser =
@@ -126,6 +125,12 @@ module.exports.fetchWasterUser =
             });
         });
     };
+
+module.exports.fetchEditProfile =
+    function(req, res){
+        res.render("editprofile.ejs",{currentuser: currentuser});
+    }
+
 module.exports.fetchMessage =
     function(req, res) {
         messagemodel.findOne({from: currentuser.name}, function (err, messagebox) {
@@ -287,3 +292,82 @@ module.exports.authenticateUser =
             }
         });
     };
+
+module.exports.saveEdits =
+    function(req,res) {
+
+        usermodel.findById(currentuser.id,function(err,userfound) {
+
+            if (err) throw err;
+
+            if (req.body.name !== "") {
+                usermodel.update({username: userfound.username},{$set: {name: req.body.name}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) {
+                        return res.sendStatus(403);
+                    }
+                });
+            }
+            if (req.body.bio !== "") {
+                usermodel.update({username: userfound.username},{$set: {bio: req.body.bio}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            if (req.body.address !== "") {
+                usermodel.update({username: userfound.username}, {$set: {address: req.body.address}}, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                userfound.save(function (err) {
+                    if (err) return res.sendStatus(403);
+                });
+            }
+            if (userfound.type === "charity") {
+                if (req.body.wasteaccepted !== "") {
+                    usermodel.update({username: userfound.username},
+                        {$addToSet: {wasteaccepted: req.body.wasteaccepted}}, function (err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    userfound.save(function (err) {
+                        if (err) return res.sendStatus(403);
+                    });
+                }
+            }
+
+            if (userfound.type === "waster") {
+                if (req.body.wasteproduced !== "") {
+                    usermodel.update({username: userfound.username},
+                        {$addToSet: {wasteproduced: req.body.wasteproduced}}, function (err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    userfound.save(function (err) {
+                        if (err) return res.sendStatus(403);
+                    });
+                }
+            }
+            if (userfound.type === "waster") {
+                return res.redirect("/wasteruser/" + userfound.id);
+            }
+            else {
+                return res.redirect("/charityuser/" + userfound.id);
+            }
+
+        });
+
+}
+
+
