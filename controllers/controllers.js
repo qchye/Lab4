@@ -260,10 +260,10 @@ module.exports.addUser =
         newUser.save(function (err){
             if (err) return res.sendStatus(403);
             if(newUser.type == "waster"){
-                return res.redirect("/cafehome");
+                return res.redirect("/wasteruser/" + currentuser.id);
             }
             else{
-                return res.redirect("/charityhome");
+                return res.redirect("/charityuser/" + currentuser.id);
             }
         });
     };
