@@ -334,12 +334,15 @@ module.exports.saveEdits =
             }
             if (userfound.type === "charity") {
                 if (req.body.wasteaccepted !== "") {
-                    usermodel.update({username: userfound.username},
-                        {$addToSet: {wasteaccepted: req.body.wasteaccepted}}, function (err) {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
+                    var wastages = req.body.wasteaccepted.toString().split(',');
+                    wastages.forEach(function (waste) {
+                        usermodel.update({username: userfound.username},
+                            {$addToSet: {wasteaccepted: waste}}, function (err) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            });
+                    })
                     userfound.save(function (err) {
                         if (err) return res.sendStatus(403);
                     });
@@ -368,6 +371,38 @@ module.exports.saveEdits =
 
         });
 
-}
+};
 
+module.exports.Support =
+    function(req,res)  {
+    usermodel.findById(req.params.id, function(err, userfound) {
+        if (err) throw err;
+
+        usermodel.update(
+            {username: userfound.username},
+            {$addToSet: {supportingwasteprovider: currentuser.name}}, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        userfound.save(function (err) {
+            if (err) {
+                return res.sendStatus(403);
+            }
+        });
+        usermodel.update(
+            {username: currentuser.username},
+            {$addToSet: {charitysupported: userfound.name}}, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        currentuser.save(function (err) {
+            if (err) {
+                return res.sendStatus(403);
+            }
+        });
+        return res.redirect("/profilecharity/" + userfound.id);
+    });
+};
 

@@ -8,19 +8,13 @@
     <div class="banner">
         <div class="homelink">
             <%if (currentuser.type === "waster") {%>
-            <a style="display: flex" href="/cafehome">
-                <img src="/assets/green_apple.png" width="51" height="65">
-                <div style="margin-left: 0.25em;margin-top: -0.25em">
-                    <p>Food 4 Thought</p>
-                </div>
+                <Header><a href="/charityhome" >Food 4 Thought</a></Header>
+                <Slogan>Turning Trash Into Treasure.</Slogan>
             </a>
             <%}%>
             <%if (currentuser.type === "charity") {%>
-            <a style="display: flex" href="/charityhome">
-                <img src="/assets/green_apple.png" width="51" height="65">
-                <div style="margin-left: 0.25em;margin-top: -0.25em">
-                    <p>Food 4 Thought</p>
-                </div>
+                <Header><a href="/charityhome" >Food 4 Thought</a></Header>
+                <Slogan>Turning Trash Into Treasure.</Slogan>
             </a>
             <%}%>
         </div>

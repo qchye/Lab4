@@ -14,6 +14,7 @@ router.get('/charityuser/:id', controllers.fetchCharityUser);
 router.get('/wasteruser/:id', controllers.fetchWasterUser);
 router.get('/editprofile', controllers.fetchEditProfile);
 router.post('/edit', controllers.saveEdits);
+router.get('/support/:id', controllers.Support);
 router.get('/message', controllers.fetchMessage);
 router.get('/message/:id', controllers.fetchMessageId);
 router.post('/message', controllers.updateMessage);
