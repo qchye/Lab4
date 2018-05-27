@@ -300,18 +300,6 @@ module.exports.saveEdits =
 
             if (err) throw err;
 
-            if (req.body.name !== "") {
-                usermodel.update({username: userfound.username},{$set: {name: req.body.name}}, function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
-                userfound.save(function (err) {
-                    if (err) {
-                        return res.sendStatus(403);
-                    }
-                });
-            }
             if (req.body.bio !== "") {
                 usermodel.update({username: userfound.username},{$set: {bio: req.body.bio}}, function (err) {
                     if (err) {
@@ -342,24 +330,28 @@ module.exports.saveEdits =
                                     console.log(err);
                                 }
                             });
+                        userfound.save(function (err) {
+                            if (err) return res.sendStatus(403);
+                        });
                     })
-                    userfound.save(function (err) {
-                        if (err) return res.sendStatus(403);
-                    });
+
                 }
             }
-
             if (userfound.type === "waster") {
                 if (req.body.wasteproduced !== "") {
-                    usermodel.update({username: userfound.username},
-                        {$addToSet: {wasteproduced: req.body.wasteproduced}}, function (err) {
-                            if (err) {
-                                console.log(err);
-                            }
+                    var wastages = req.body.wasteproduced.toString().split(',');
+                    wastages.forEach(function (waste) {
+                        usermodel.update({username: userfound.username},
+                            {$addToSet: {wasteproduced: req.body.wasteproduced}}, function (err) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            });
+                        userfound.save(function (err) {
+                            if (err) return res.sendStatus(403);
                         });
-                    userfound.save(function (err) {
-                        if (err) return res.sendStatus(403);
-                    });
+
+                    })
                 }
             }
             if (userfound.type === "waster") {

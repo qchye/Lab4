@@ -28,26 +28,22 @@
             <p style="padding-left: 2em"><a href="/">Log out</a></p>
         </div>
     </div>
-    <div style="margin-left: auto;margin-right: auto">Type comma separated values for waste input</div>
-    <div class="profilecontent">
+    <div class="editinfo">Type comma separated values for waste input</div>
+    <div class="editpart">
         <form action="/edit" method="POST">
-            <div style="padding-left: 2em;padding-top: 2em">
-
-                <p>Name <input type="text" placeholder="<%=currentuser.name%>" name="name">
+            <div>
+                <p>Bio <br><textarea type="text" placeholder="<%=currentuser.bio%>" name="bio"></textarea>
                 </p>
-                <p>Bio <textarea type="text" placeholder="<%=currentuser.bio%>" name="bio"></textarea>
-                </p>
-                <p>Location <input type="text" placeholder="<%=currentuser.address%>" name="address">
+                <p>Location <br><input type="text" placeholder="<%=currentuser.address%>" name="address">
                 </p>
                 <%if (currentuser.type === "charity") {%>
-                <p>Waste Accepted <input type="text" placeholder="<%=currentuser.wasteaccepted%>" name="wasteaccepted">
+                <p>Waste Accepted <br><input type="text" placeholder="<%=currentuser.wasteaccepted%>" name="wasteaccepted">
                 </p>
                 <%}%>
                 <%if (currentuser.type === "waster") {%>
-                <p>Waste Produced <input type="text" placeholder="<%=currentuser.wasteproduced%>" name="wasteproduced">
+                <p>Waste Produced <br><input type="text" placeholder="<%=currentuser.wasteproduced%>" name="wasteproduced">
                 </p>
                 <%}%>
-
                 <button type="submit">Done</button>
 
             </div>
@@ -55,6 +51,10 @@
 
         </form>
     </div>
-    <div class="bottompart">Powered by The Caffeine Addicts!</div>
+    <div class="bottompart">
+        <div class="bottomright">
+            Powered by <br>The Caffeine Addicts!
+        </div>
+    </div>
 </div>
 </body>

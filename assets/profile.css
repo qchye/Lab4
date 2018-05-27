@@ -36,11 +36,42 @@
 
 }
 
+.editpart{
+    grid-area: midesection;
+    position: center;
+    margin: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0% 5% 0% 5%;
+    text-align: center;
+    display:grid;
+    line-height: 200%;
+    zoom: 120%;
+    border: double;
+    border-width: 2px;
+    border-color: yellowgreen;
+    border-radius: 5px;
+}
+
+.editinfo{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .bottompart{
     grid-area: bottompart;
     display: grid;
-    margin-top: -2%;
-    margin-left: 85%
+    margin-top: 2%;
+    position: relative;
+
+}
+
+.bottomright{
+    position: absolute;
+    text-align: center;
+    bottom:0;
+    right:0;
+    padding: 1% 1% 0 1%;
 
 }
 
@@ -107,6 +138,10 @@ Slogan {
     color: white;
 }
 
+.logout{
+    padding-left: 2em;
+}
+
 .primaryinfo{
     grid-area: primaryinfo;
     padding-top: 2em;
@@ -116,6 +151,15 @@ Slogan {
     display: grid;
     grid-template-columns: 60% 40%;
     grid-template-areas: "maininfo buttons"
+}
+
+.bioheader{
+    padding-left: 7em;
+    font-size: 24px;
+}
+
+.pic{
+    border: 1px black solid;
 }
 
 .maininfo{
@@ -137,9 +181,18 @@ Slogan {
 
 .buttons{
     display: flex;
-    padding-left: 1%;
-    padding-top: 1em;
+    padding-left: 5%;
+    padding-top: 3em;
 
+}
+
+.singlebutton{
+    font-size: 1.25em;
+    margin-left: 3em;
+}
+
+.secondbutton{
+    margin-left: 1em;
 }
 
 .secondaryinfo{
@@ -151,6 +204,15 @@ Slogan {
     font-size: 16px;
 }
 
+.waste{
+    padding-left: 2em;
+    font-size: 24px;
+}
+
+.wasteheader{
+    padding-left: 2.2em;
+}
+
 .tertiaryinfo{
     grid-area: tertiaryinfo;
     display: flex;
@@ -160,20 +222,42 @@ Slogan {
     font-size: 18px;
 }
 
-.box1{
+.wasteprovider{
+    padding-left: 2em;
+    font-size: 24px;
+    text-align: center;
+    margin-left: -2em;
+}
 
+.charity{
+    padding-left: 2em;
+    font-size: 24px;
+    text-align: center;
+}
+
+.recommended{
+    padding-top: 9em;
+    padding-left: 5em;
+}
+
+.box1{
+    font-size: 0.9em;
     padding: 1%;
     margin-top: -1.5em;
     width: 360px;
     height: 100px;
     border: 1.5px solid yellowgreen;
     border-radius: 0.25em;
-    overflow-y: auto;
+    overflow-y: hidden;
 
 }
 
-.box2{
+.box1:hover{
+    overflow: auto;
+}
 
+.box2{
+    font-size: 18px;
     padding: 4%;
     margin-top: -1em;
     width: 240px;
@@ -181,10 +265,13 @@ Slogan {
     line-height: 140%;
     border: 1.5px solid yellowgreen;
     border-radius: 0.25em;
-    overflow-y: auto;
+    overflow-y: hidden;
 
 }
 
+.box2:hover{
+    overflow: auto;
+}
 
 button{
     -webkit-transition: color 0.2s ease-out;

@@ -13,17 +13,16 @@
         </div>
         <div class="sidelink">
             <p><a href="/charityuser/<%=user.id%>">Profile</a></p>
-            <p style="padding-left: 2em"><a href="/">Log out</a></p>
+            <div class="logout">
+                <p><a href="/">Log out</a></p>
+            </div>
         </div>
 
     </div>
     <div class="profilecontent">
         <div class="primaryinfo">
             <div class="maininfo">
-                <div>
-                    <img src=<%=user.photo%> width="136" height="120"
-                         style="border: 1px black solid">
-                </div>
+                <img src="<%=user.photo%>" width="136" height="120" style="border: 1px black solid">
                 <div class="personalinfo">
                     <div class="name">
                         <p><%=user.name%></p>
@@ -35,27 +34,29 @@
                 </div>
             </div>
             <div class="buttons">
-                <div style="padding-left: 5%;padding-top: 3em">
-                    <%if(mymessagebox.to.length === 0){%>
-                    <a href="/message"><button style="font-size: 1em">Messages</button></a>
-                    <%}%>
-                    <%if(mymessagebox.to.length !== 0){%>
-                    <a href="/message/<%=mymessagebox.to[0]%>"><button style="font-size: 1em">Messages</button></a>
-                    <%}%>
-                    <a href="/editprofile%>"><button style="margin-left: 1em;font-size: 1em">Edit Profile
-                        </button></a>
-                </div>
+                <%if(mymessagebox.to.length === 0){%>
+                <a href="/message"><button>Messages</button></a>
+                <%}%>
+                <%if(mymessagebox.to.length !== 0){%>
+                <a href="/message/<%=mymessagebox.to[0]%>"><button>Messages</button></a>
+                <%}%>
+                <a href="/editprofile%>"><div class="secondbutton">
+                        <button>Edit Profile</button></div></a>
             </div>
         </div>
 
         <div class="secondaryinfo">
             <div>
-                <p style="padding-left: 7em;font-size: 24px">Bio</p>
-                <div class="box1" style="font-size: 0.9em"><%=user.bio%></div>
+                <div class="bioheader">
+                    <p>Bio</p>
+                </div>
+                <div class="box1"><%=user.bio%></div>
             </div>
-            <div style="padding-left: 4em">
-                <p style="padding-left: 2.2em;font-size: 24px">Waste Accepted</p>
-                <div id = "wasteaccepted" class="box2" style="font-size: 18px;">
+            <div class="waste">
+                <div class="wasteheader">
+                    <p>Waste Accepted</p>
+                </div>
+                <div class="box2">
                     <% user.wasteaccepted.forEach(function(waste){%>
                        <%=waste%><br>
                     <%});%>
@@ -63,17 +64,22 @@
             </div>
         </div>
         <div class="tertiaryinfo">
-            <p style="padding-left: 2em;font-size: 24px;text-align: center;margin-left: -2em">
-                List of Supporting Waste Providers</p>
+            <div class="wasteprovider">
+                <p>List of Supporting Waste Providers</p>
+            </div>
             <div class="box2"><% user.supportingwasteprovider.forEach(function(supporter){%>
                 <%=supporter%><br>
                 <%});%>
             </div>
-            <p style="padding-top: 9em;padding-left: 5em">***Recommended by us</p>
+            <div class="recommended">
+                <p>***Recommended by us</p>
+            </div>
         </div>
     </div>
     <div class="bottompart">
-        Powered by The Caffeine Addicts!
+        <div class="bottomright">
+            Powered by <br>The Caffeine Addicts!
+        </div>
     </div>
 </div>
 
